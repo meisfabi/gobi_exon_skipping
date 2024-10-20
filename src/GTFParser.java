@@ -1,4 +1,6 @@
 import Model.GTF;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayOutputStream;
 import java.io.RandomAccessFile;
@@ -21,8 +23,10 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 public class GTFParser {
+    private static final Logger logger = LoggerFactory.getLogger(GTFParser.class);
     private static final int bufferSize = 8192;
     public static List<GTF> parse(String inputPath){
+        logger.info("Starting to parse gtf file");
         List<GTF> parsedGTF = Collections.synchronizedList(new ArrayList<>());
         Path path = Path.of(inputPath);
         var executorService = Executors.newFixedThreadPool(4);
@@ -61,7 +65,7 @@ public class GTFParser {
 
         }
         catch (Exception e){
-            e.printStackTrace();
+            logger.error("Error while parsing gtf file", e);
         }
 
         executorService.shutdown();
@@ -72,6 +76,7 @@ public class GTFParser {
         } catch (InterruptedException e) {
             executorService.shutdownNow();
         }
+        logger.info("GTF File parsed");
         return parsedGTF;
     }
 
@@ -84,12 +89,12 @@ public class GTFParser {
             gtf.setFeature(splitLine[2]);
             gtf.setStart(Integer.parseInt(splitLine[3]));
             gtf.setEnd(Integer.parseInt(splitLine[4]));
+
             if(!splitLine[5].equals(".")){
                 gtf.setScore(Double.parseDouble(splitLine[5]));
             } else{
                 gtf.setScore(-1.0);
             }
-
 
             gtf.setStrand(splitLine[6].charAt(0));
 
@@ -101,7 +106,7 @@ public class GTFParser {
 
             gtf.setAttribute(splitLine[8].split(";"));
         } catch (Exception e){
-
+            logger.error("Error while trying to parse line", e);
         }
 
         gtfList.add(gtf);

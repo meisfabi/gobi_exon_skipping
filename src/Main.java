@@ -2,8 +2,11 @@ import Model.GTF;
 import net.sourceforge.argparse4j.ArgumentParsers;
 import net.sourceforge.argparse4j.inf.ArgumentParser;
 import net.sourceforge.argparse4j.inf.Namespace;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Main {
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
     public static void main(String[] args) {
         ArgumentParser parser = ArgumentParsers.newFor("Main").build().defaultHelp(true).description("A Description");
 
@@ -13,9 +16,8 @@ public class Main {
         try {
             Namespace res = parser.parseArgs(args);
             var data = GTFParser.parse(res.get("gtf"));
-            System.out.println(data.size());
         } catch (Exception e) {
-
+            logger.error("Error while executing main", e);
         }
     }
 }
