@@ -15,12 +15,12 @@ public class Main {
         parser.addArgument("-o").required(true).help("Output Path").metavar("<output file path>").type(String.class);
         try {
             Namespace res = parser.parseArgs(args);
-            while(true){
-                long start = System.currentTimeMillis();
-                var data = GTFParser.parse(res.get("gtf"));
-                logger.info(String.format("Time needed for parsing: %s seconds", (System.currentTimeMillis() - start) / 1000.0));
-            }
-            //logger.info("Starting computation") ;
+
+            long start = System.currentTimeMillis();
+            var data = GTFParser.parse(res.get("gtf"));
+            logger.info(String.format("Time needed for parsing: %s seconds", (System.currentTimeMillis() - start) / 1000.0));
+
+            logger.info("Starting computation") ;
         } catch(ArgumentParserException e){
             parser.printHelp();
         }
