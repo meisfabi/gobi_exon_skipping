@@ -25,11 +25,13 @@ import java.util.concurrent.TimeUnit;
 public class GTFParser {
     private static final Logger logger = LoggerFactory.getLogger(GTFParser.class);
     private static final int bufferSize = 8192;
+    private static int errorLines;
     public static List<GTF> parse(String inputPath){
+        errorLines = 0;
         logger.info("Starting to parse gtf file");
         List<GTF> parsedGTF = Collections.synchronizedList(new ArrayList<>());
         Path path = Path.of(inputPath);
-        var executorService = Executors.newFixedThreadPool(4);
+        var executorService = Executors.newFixedThreadPool(10);
         try (FileChannel channel = FileChannel.open(path, StandardOpenOption.READ)) {
 
             var fileSize = channel.size();
@@ -51,7 +53,8 @@ public class GTFParser {
 
                 for (int i = 0; i < lines.length - 1; i++) {
                     String line = lines[i].trim();
-
+                    if(line.startsWith("#"))
+                        continue;
                     executorService.submit(() -> processLine(line, parsedGTF));
                 }
 
@@ -69,6 +72,7 @@ public class GTFParser {
         }
 
         executorService.shutdown();
+
         try {
             if (!executorService.awaitTermination(60, TimeUnit.SECONDS)) {
                 executorService.shutdownNow();
@@ -76,7 +80,10 @@ public class GTFParser {
         } catch (InterruptedException e) {
             executorService.shutdownNow();
         }
-        logger.info("GTF File parsed");
+
+        logger.info("GTF-File parsed");
+        if(errorLines > 0)
+            logger.info(String.format("%s could not be saved due to an error while parsing", errorLines));
         return parsedGTF;
     }
 
@@ -105,10 +112,10 @@ public class GTFParser {
             }
 
             gtf.setAttribute(splitLine[8].split(";"));
+            gtfList.add(gtf);
         } catch (Exception e){
             logger.error("Error while trying to parse line", e);
+            errorLines++;
         }
-
-        gtfList.add(gtf);
     }
 }

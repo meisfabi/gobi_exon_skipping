@@ -55,7 +55,7 @@ public class GTF {
     }
     public void setStrand(char strand) throws Exception {
         if(strand != '-' && strand != '+' && strand != '.')
-            throw new Exception(String.format("Strand must be '+', '-' or '.' but was %s", strand));
+            throw new Exception("Strand must be '+', '-' or '.'");
         this.strand = strand;
     }
 
