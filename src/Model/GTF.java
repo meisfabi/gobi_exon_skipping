@@ -1,77 +1,105 @@
 package Model;
 
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class GTF {
+
+    // Fields
     private String seqName;
+    private String source;
+    private String feature;
+    private long start;
+    private long end;
+    private double score;
+    private char strand;
+    private int frame;
+    private HashMap<String, String> attributes;
+
+    // Getters and Setters
+    // 1. seqName
     public String getSeqName() {
         return seqName;
     }
+
     public void setSeqName(String newSeqName) {
         this.seqName = newSeqName;
     }
 
-    private String source;
+    // 2. source
     public String getSource() {
         return source;
     }
+
     public void setSource(String newSource) {
         this.source = newSource;
     }
 
-    private String feature;
-    public String getFeature(){
+    // 3. feature
+    public String getFeature() {
         return feature;
     }
+
     public void setFeature(String feature) {
         this.feature = feature;
     }
 
-    private long start;
+    // 4. start
     public long getStart() {
         return start;
     }
+
     public void setStart(long start) {
         this.start = start;
     }
 
-    private long end;
-    public void setEnd(long end) {
-        this.end = end;
-    }
+    // 5. end
     public long getEnd() {
         return end;
     }
 
-    private double score;
-    public void setScore(Double score) {
-        this.score = score;
+    public void setEnd(long end) {
+        this.end = end;
     }
+
+    // 6. score
     public double getScore() {
         return score;
     }
 
-    private char strand;
+    public void setScore(double score) {
+        this.score = score;
+    }
+
+    // 7. strand
     public char getStrand() {
         return strand;
     }
-    public void setStrand(char strand) throws Exception {
-        if(strand != '-' && strand != '+' && strand != '.')
-            throw new Exception("Strand must be '+', '-' or '.'");
+
+    public void setStrand(char strand) {
+        if (strand != '-' && strand != '+' && strand != '.') {
+            throw new IllegalArgumentException("Strand must be '+', '-', or '.'");
+        }
         this.strand = strand;
     }
 
-    private int frame;
-    public void setFrame(int frame) {
-        this.frame = frame;
-    }
+    // 8. frame
     public int getFrame() {
         return frame;
     }
 
-    private String[] attribute;
-    public void setAttribute(String[] attribute) {
-        this.attribute = attribute;
+    public void setFrame(int frame) {
+        this.frame = frame;
     }
-    public String[] getAttribute() {
-        return attribute;
+
+    // 9. attribute
+    public Map<String, String> getAttributes() {
+        return attributes != null ? new HashMap<>(attributes) : null;
+    }
+
+    public void setAttributes(Map<String, String> attributes) {
+        this.attributes = (attributes != null) ? new HashMap<>(attributes) : null;
     }
 }
+

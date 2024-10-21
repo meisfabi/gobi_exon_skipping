@@ -1,35 +1,25 @@
 import Model.GTF;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.ByteArrayOutputStream;
-import java.io.RandomAccessFile;
-import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
+import java.util.*;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 public class GTFParser {
     private static final Logger logger = LoggerFactory.getLogger(GTFParser.class);
     private static final int bufferSize = 8192;
     private static int errorLines;
-    public static List<GTF> parse(String inputPath){
+    private static final Map<String, TreeMap<Long, GTF>>[] parsedGTF = new Map[2];
+    public static Map<String, TreeMap<Long, GTF>>[] parse(String inputPath){
         errorLines = 0;
         logger.info("Starting to parse gtf file");
-        List<GTF> parsedGTF = Collections.synchronizedList(new ArrayList<>());
+        parsedGTF[0] = Collections.synchronizedMap(new HashMap<>());
+        parsedGTF[1] = Collections.synchronizedMap(new HashMap<>());
         Path path = Path.of(inputPath);
         var executorService = Executors.newFixedThreadPool(10);
         try (FileChannel channel = FileChannel.open(path, StandardOpenOption.READ)) {
@@ -55,7 +45,7 @@ public class GTFParser {
                     String line = lines[i].trim();
                     if(line.startsWith("#"))
                         continue;
-                    executorService.submit(() -> processLine(line, parsedGTF));
+                    executorService.submit(() -> processLine(line));
                 }
 
                 leftover = lines[lines.length - 1];
@@ -64,8 +54,7 @@ public class GTFParser {
             }
 
             final String leftoverFinal = leftover.trim();
-            executorService.submit(() -> processLine(leftoverFinal, parsedGTF));
-
+            executorService.submit(() -> processLine(leftoverFinal));
         }
         catch (Exception e){
             logger.error("Error while parsing gtf file", e);
@@ -87,8 +76,11 @@ public class GTFParser {
         return parsedGTF;
     }
 
-    private static void processLine(String line, List<GTF> gtfList){
+    private static void processLine(String line){
         var splitLine = line.split("\t");
+        if(!splitLine[2].equals("exon") && !splitLine[2].equals("CDS"))
+            return;
+
         var gtf = new GTF();
         try{
             gtf.setSeqName(splitLine[0]);
@@ -111,8 +103,26 @@ public class GTFParser {
                 gtf.setFrame(-1);
             }
 
-            gtf.setAttribute(splitLine[8].split(";"));
-            gtfList.add(gtf);
+            var attributes = splitLine[8].split(";");
+            var attributeMap = new HashMap<String, String>();
+            for(var attribute : attributes){
+                var splitAttribute = attribute.trim().split(" ");
+                var key = splitAttribute[0];
+                var value = splitAttribute[1].replace("\"", "");
+                attributeMap.put(key, value);
+                if(splitAttribute[0].equals("transcript_id")){
+                    int index = Constants.CDS_INDEX;
+                    if(gtf.getFeature().equals("exon")){
+                        index = Constants.EXON_INDEX;
+                    }
+                    parsedGTF[index].putIfAbsent(value, new TreeMap<>());
+                    var treeMap = parsedGTF[index].get(value);
+                    synchronized (treeMap) {
+                        treeMap.putIfAbsent(gtf.getStart(), gtf);
+                    }
+                }
+            }
+            gtf.setAttributes(attributeMap);
         } catch (Exception e){
             logger.error("Error while trying to parse line", e);
             errorLines++;

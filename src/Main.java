@@ -1,4 +1,3 @@
-import Model.GTF;
 import net.sourceforge.argparse4j.ArgumentParsers;
 import net.sourceforge.argparse4j.inf.ArgumentParser;
 import net.sourceforge.argparse4j.inf.ArgumentParserException;
@@ -19,12 +18,12 @@ public class Main {
             long start = System.currentTimeMillis();
             var data = GTFParser.parse(res.get("gtf"));
             logger.info(String.format("Time needed for parsing: %s seconds", (System.currentTimeMillis() - start) / 1000.0));
+            logger.info("Starting exon skipping computation");
+            ExonSkipping.compute(data, res.get("o"));
 
-            logger.info("Starting computation") ;
         } catch(ArgumentParserException e){
             parser.printHelp();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             logger.error("Error while executing main", e);
         }
     }
