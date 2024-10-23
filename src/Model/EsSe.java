@@ -15,8 +15,12 @@ public class EsSe extends Intron  {
     private int nProts;
     private int nTrans;
 
-    public EsSe(Intron intron) {
+    public EsSe(Intron intron, int minSkippedExon, int maxSkippedExon, int minSkippedBases, int maxSkippedBases) {
         super(intron.geneId, intron.transcriptId, intron.proteinId, intron.symbol, intron.strand, intron.chromosome, intron.start, intron.stop);
+        this.minSkippedBases = minSkippedBases;
+        this.maxSkippedBases = maxSkippedBases;
+        this.minSkippedExon = minSkippedExon;
+        this.maxSkippedExon = maxSkippedExon;
     }
 
     public EsSe(Intron intron, List<Intron> wildtypes, List<String> wildtypeProteins, List<String> splicingVariantProteins, int minSkippedBases, int maxSkippedBases, int minSkippedExon, int maxSkippedExon, int nProts, int nTrans) {
