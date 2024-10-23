@@ -1,0 +1,570 @@
+2024-10-23 16:32:45 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 16:32:45 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 16:32:45 [main] INFO  Main - Time needed for parsing: 0.082 seconds
+2024-10-23 16:32:45 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 16:34:11 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 16:34:11 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 16:34:11 [main] INFO  Main - Time needed for parsing: 0.103 seconds
+2024-10-23 16:34:11 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 16:37:38 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 16:37:38 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 16:37:38 [main] INFO  Main - Time needed for parsing: 0.098 seconds
+2024-10-23 16:37:38 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 16:39:07 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 16:39:07 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 16:39:07 [main] INFO  Main - Time needed for parsing: 0.075 seconds
+2024-10-23 16:39:07 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 16:39:07 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 16:39:07 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 16:39:12 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 16:39:12 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 16:39:12 [main] INFO  Main - Time needed for parsing: 0.091 seconds
+2024-10-23 16:39:12 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 16:39:12 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 16:39:12 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 16:39:24 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 16:39:24 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 16:39:24 [main] INFO  Main - Time needed for parsing: 0.084 seconds
+2024-10-23 16:39:24 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 16:39:24 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 16:39:24 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 16:40:08 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 16:40:09 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 16:40:09 [main] INFO  Main - Time needed for parsing: 0.068 seconds
+2024-10-23 16:40:09 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 16:40:09 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 16:40:09 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 16:40:31 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 16:40:31 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 16:40:31 [main] INFO  Main - Time needed for parsing: 0.08 seconds
+2024-10-23 16:40:31 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 16:40:31 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 16:40:31 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 16:41:18 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 16:41:18 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 16:41:18 [main] INFO  Main - Time needed for parsing: 0.079 seconds
+2024-10-23 16:41:18 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 16:41:18 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 16:41:18 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 16:41:51 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 16:41:51 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 16:41:51 [main] INFO  Main - Time needed for parsing: 0.065 seconds
+2024-10-23 16:41:51 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 16:41:51 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 16:41:51 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 16:42:53 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 16:42:53 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 16:42:53 [main] INFO  Main - Time needed for parsing: 0.079 seconds
+2024-10-23 16:42:53 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 16:42:53 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 16:42:53 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 16:50:07 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 16:50:07 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 16:50:07 [main] INFO  Main - Time needed for parsing: 0.105 seconds
+2024-10-23 16:50:07 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 16:50:07 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 16:50:07 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 16:50:24 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 16:50:24 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 16:50:24 [main] INFO  Main - Time needed for parsing: 0.107 seconds
+2024-10-23 16:50:24 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 16:50:24 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 16:50:24 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 16:50:37 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 16:50:38 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 16:50:38 [main] INFO  Main - Time needed for parsing: 0.148 seconds
+2024-10-23 16:50:38 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 16:50:38 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 16:50:38 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 16:50:59 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 16:51:00 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 16:51:00 [main] INFO  Main - Time needed for parsing: 0.109 seconds
+2024-10-23 16:51:00 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 16:51:00 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 16:51:00 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 16:51:11 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 16:51:11 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 16:51:11 [main] INFO  Main - Time needed for parsing: 0.123 seconds
+2024-10-23 16:51:11 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 16:51:11 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 16:51:11 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 16:51:59 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 16:51:59 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 16:51:59 [main] INFO  Main - Time needed for parsing: 0.111 seconds
+2024-10-23 16:51:59 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 16:51:59 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 16:51:59 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 16:51:59 [main] ERROR Main - Error while executing main
+java.lang.ClassCastException: class ExonSkipping$Intron cannot be cast to class java.lang.Comparable (ExonSkipping$Intron is in unnamed module of loader 'app'; java.lang.Comparable is in module java.base of loader 'bootstrap')
+	at java.base/java.util.TreeMap.compare(TreeMap.java:1604)
+	at java.base/java.util.TreeMap.addEntryToEmptyMap(TreeMap.java:811)
+	at java.base/java.util.TreeMap.put(TreeMap.java:820)
+	at java.base/java.util.TreeMap.put(TreeMap.java:569)
+	at java.base/java.util.TreeSet.add(TreeSet.java:259)
+	at ExonSkipping.compute(ExonSkipping.java:30)
+	at Main.main(Main.java:21)
+2024-10-23 16:52:05 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 16:52:05 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 16:52:05 [main] INFO  Main - Time needed for parsing: 0.108 seconds
+2024-10-23 16:52:05 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 16:52:05 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 16:52:05 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 16:52:05 [main] ERROR Main - Error while executing main
+java.lang.ClassCastException: class ExonSkipping$Intron cannot be cast to class java.lang.Comparable (ExonSkipping$Intron is in unnamed module of loader 'app'; java.lang.Comparable is in module java.base of loader 'bootstrap')
+	at java.base/java.util.TreeMap.compare(TreeMap.java:1604)
+	at java.base/java.util.TreeMap.addEntryToEmptyMap(TreeMap.java:811)
+	at java.base/java.util.TreeMap.put(TreeMap.java:820)
+	at java.base/java.util.TreeMap.put(TreeMap.java:569)
+	at java.base/java.util.TreeSet.add(TreeSet.java:259)
+	at ExonSkipping.compute(ExonSkipping.java:30)
+	at Main.main(Main.java:21)
+2024-10-23 16:52:34 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 16:52:34 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 16:52:34 [main] INFO  Main - Time needed for parsing: 0.113 seconds
+2024-10-23 16:52:34 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 16:52:34 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 16:52:34 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 16:52:42 [main] ERROR Main - Error while executing main
+java.lang.ClassCastException: class ExonSkipping$Intron cannot be cast to class java.lang.Comparable (ExonSkipping$Intron is in unnamed module of loader 'app'; java.lang.Comparable is in module java.base of loader 'bootstrap')
+	at java.base/java.util.TreeMap.compare(TreeMap.java:1604)
+	at java.base/java.util.TreeMap.addEntryToEmptyMap(TreeMap.java:811)
+	at java.base/java.util.TreeMap.put(TreeMap.java:820)
+	at java.base/java.util.TreeMap.put(TreeMap.java:569)
+	at java.base/java.util.TreeSet.add(TreeSet.java:259)
+	at ExonSkipping.compute(ExonSkipping.java:30)
+	at Main.main(Main.java:21)
+2024-10-23 16:53:59 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 16:53:59 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 16:53:59 [main] INFO  Main - Time needed for parsing: 0.07 seconds
+2024-10-23 16:53:59 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 16:53:59 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 16:53:59 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 16:54:03 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 16:54:04 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 16:54:04 [main] INFO  Main - Time needed for parsing: 0.143 seconds
+2024-10-23 16:54:04 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 16:54:04 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 16:54:04 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 16:54:09 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 16:54:09 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 16:54:09 [main] INFO  Main - Time needed for parsing: 0.106 seconds
+2024-10-23 16:54:09 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 16:54:09 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 16:54:09 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 16:55:03 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 16:55:03 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 16:55:03 [main] INFO  Main - Time needed for parsing: 0.104 seconds
+2024-10-23 16:55:03 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 16:55:03 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 16:55:03 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 16:56:04 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 16:56:04 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 16:56:04 [main] INFO  Main - Time needed for parsing: 0.102 seconds
+2024-10-23 16:56:04 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 16:56:04 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 16:56:04 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 17:08:07 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 17:08:07 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 17:08:07 [main] INFO  Main - Time needed for parsing: 0.083 seconds
+2024-10-23 17:08:07 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 17:08:07 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 17:08:07 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 17:08:54 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 17:08:54 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 17:08:54 [main] INFO  Main - Time needed for parsing: 0.083 seconds
+2024-10-23 17:08:54 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 17:08:54 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 17:08:54 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 17:10:37 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 17:10:37 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 17:10:37 [main] INFO  Main - Time needed for parsing: 0.076 seconds
+2024-10-23 17:10:37 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 17:10:37 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 17:10:37 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 17:11:00 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 17:11:00 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 17:11:00 [main] INFO  Main - Time needed for parsing: 0.087 seconds
+2024-10-23 17:11:00 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 17:11:00 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 17:11:00 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 17:11:39 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 17:11:39 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 17:11:39 [main] INFO  Main - Time needed for parsing: 0.121 seconds
+2024-10-23 17:11:39 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 17:11:39 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 17:11:39 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 17:12:52 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 17:13:07 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 17:13:07 [main] INFO  Main - Time needed for parsing: 14.889 seconds
+2024-10-23 17:13:07 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 17:13:07 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 17:13:07 [main] INFO  ExonSkipping - Looking at Gene ENSG00000168374
+2024-10-23 17:13:07 [main] INFO  ExonSkipping - Looking at Gene ENSG00000217862
+2024-10-23 17:13:07 [main] ERROR Main - Error while executing main
+java.lang.NullPointerException: Cannot invoke "java.util.Map.entrySet()" because "transcriptCdsMap" is null
+	at ExonSkipping.compute(ExonSkipping.java:20)
+	at Main.main(Main.java:21)
+2024-10-23 17:40:12 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 17:42:04 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 17:45:48 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 17:46:10 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 17:46:30 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 17:46:30 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 17:46:30 [main] INFO  Main - Time needed for parsing: 0.108 seconds
+2024-10-23 17:46:30 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 17:46:30 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 17:46:30 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 17:46:51 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 17:46:51 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 17:46:51 [main] INFO  Main - Time needed for parsing: 0.103 seconds
+2024-10-23 17:46:51 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 17:46:51 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 17:46:51 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 17:46:59 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 17:46:59 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 17:46:59 [main] INFO  Main - Time needed for parsing: 0.1 seconds
+2024-10-23 17:46:59 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 17:46:59 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 17:46:59 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 17:47:44 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 17:47:44 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 17:47:44 [main] INFO  Main - Time needed for parsing: 0.102 seconds
+2024-10-23 17:47:44 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 17:47:44 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 17:47:44 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 17:50:45 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 17:50:45 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 17:50:45 [main] INFO  Main - Time needed for parsing: 0.076 seconds
+2024-10-23 17:50:45 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000354674
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000354674
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000469439
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000469439
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000537033
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000537033
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000537750
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000537750
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000423061
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000423061
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000448038
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000448038
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000356820
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000356820
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000495090
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000495090
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000466159
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000466159
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000341594
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000341594
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000454018
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000454018
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000367255
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000367255
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000539504
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000539504
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000367257
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000367257
+2024-10-23 17:50:45 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000265368
+2024-10-23 17:50:46 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000265368
+2024-10-23 17:50:46 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000367251
+2024-10-23 17:50:46 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000367251
+2024-10-23 17:50:46 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000540663
+2024-10-23 17:50:46 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000540663
+2024-10-23 17:50:46 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000367253
+2024-10-23 17:50:46 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000367253
+2024-10-23 17:50:46 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000474655
+2024-10-23 17:50:46 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000474655
+2024-10-23 17:50:46 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000367248
+2024-10-23 17:50:46 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000367248
+2024-10-23 17:50:46 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000413186
+2024-10-23 17:50:46 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000413186
+2024-10-23 17:51:26 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 17:51:26 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 17:51:26 [main] INFO  Main - Time needed for parsing: 0.101 seconds
+2024-10-23 17:51:26 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000354674
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000354674
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000469439
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000469439
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000537033
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000537033
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000537750
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000537750
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000423061
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000423061
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000448038
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000448038
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000356820
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000356820
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000495090
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000495090
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000466159
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000466159
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000341594
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000341594
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000454018
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000454018
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000367255
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000367255
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000539504
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000539504
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000367257
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000367257
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000265368
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000265368
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000367251
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000367251
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000540663
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000540663
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000367253
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000367253
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000474655
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000474655
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000367248
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000367248
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000413186
+2024-10-23 17:51:26 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000413186
+2024-10-23 18:00:31 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 18:00:31 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 18:00:31 [main] INFO  Main - Time needed for parsing: 0.108 seconds
+2024-10-23 18:00:31 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000354674
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000354674
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000469439
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000469439
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000537033
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000537033
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000537750
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000537750
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000423061
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000423061
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000448038
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000448038
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000356820
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000356820
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000495090
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000495090
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000466159
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000466159
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000341594
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000341594
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000454018
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000454018
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000367255
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000367255
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000539504
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000539504
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000367257
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000367257
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000265368
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000265368
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000367251
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000367251
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000540663
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000540663
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000367253
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000367253
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000474655
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000474655
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000367248
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000367248
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Starting to look at transcript ENST00000413186
+2024-10-23 18:00:31 [main] INFO  ExonSkipping - Finished to look at transcript ENST00000413186
+2024-10-23 18:12:30 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 18:12:30 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 18:12:30 [main] INFO  Main - Time needed for parsing: 0.075 seconds
+2024-10-23 18:12:30 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 18:12:30 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 18:12:30 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 18:12:30 [pool-2-thread-1] INFO  ExonSkipping - Starting to look at transcript ENST00000354674
+2024-10-23 18:12:30 [pool-2-thread-2] INFO  ExonSkipping - Starting to look at transcript ENST00000469439
+2024-10-23 18:12:30 [pool-2-thread-3] INFO  ExonSkipping - Starting to look at transcript ENST00000537033
+2024-10-23 18:12:30 [pool-2-thread-6] INFO  ExonSkipping - Starting to look at transcript ENST00000448038
+2024-10-23 18:12:30 [pool-2-thread-7] INFO  ExonSkipping - Starting to look at transcript ENST00000356820
+2024-10-23 18:12:30 [pool-2-thread-10] INFO  ExonSkipping - Starting to look at transcript ENST00000341594
+2024-10-23 18:12:30 [pool-2-thread-4] INFO  ExonSkipping - Starting to look at transcript ENST00000537750
+2024-10-23 18:12:30 [pool-2-thread-5] INFO  ExonSkipping - Starting to look at transcript ENST00000423061
+2024-10-23 18:12:30 [pool-2-thread-8] INFO  ExonSkipping - Starting to look at transcript ENST00000495090
+2024-10-23 18:12:30 [pool-2-thread-9] INFO  ExonSkipping - Starting to look at transcript ENST00000466159
+2024-10-23 18:12:30 [pool-2-thread-3] INFO  ExonSkipping - Finished to look at transcript ENST00000537033
+2024-10-23 18:12:30 [pool-2-thread-4] INFO  ExonSkipping - Finished to look at transcript ENST00000537750
+2024-10-23 18:12:30 [pool-2-thread-1] INFO  ExonSkipping - Finished to look at transcript ENST00000354674
+2024-10-23 18:12:30 [pool-2-thread-1] INFO  ExonSkipping - Starting to look at transcript ENST00000539504
+2024-10-23 18:12:30 [pool-2-thread-2] INFO  ExonSkipping - Finished to look at transcript ENST00000469439
+2024-10-23 18:12:30 [pool-2-thread-1] INFO  ExonSkipping - Finished to look at transcript ENST00000539504
+2024-10-23 18:12:30 [pool-2-thread-2] INFO  ExonSkipping - Starting to look at transcript ENST00000367257
+2024-10-23 18:12:30 [pool-2-thread-1] INFO  ExonSkipping - Starting to look at transcript ENST00000265368
+2024-10-23 18:12:30 [pool-2-thread-2] INFO  ExonSkipping - Finished to look at transcript ENST00000367257
+2024-10-23 18:12:30 [pool-2-thread-7] INFO  ExonSkipping - Finished to look at transcript ENST00000356820
+2024-10-23 18:12:30 [pool-2-thread-7] INFO  ExonSkipping - Starting to look at transcript ENST00000540663
+2024-10-23 18:12:30 [pool-2-thread-7] INFO  ExonSkipping - Finished to look at transcript ENST00000540663
+2024-10-23 18:12:30 [pool-2-thread-7] INFO  ExonSkipping - Starting to look at transcript ENST00000367253
+2024-10-23 18:12:30 [pool-2-thread-4] INFO  ExonSkipping - Starting to look at transcript ENST00000454018
+2024-10-23 18:12:30 [pool-2-thread-6] INFO  ExonSkipping - Finished to look at transcript ENST00000448038
+2024-10-23 18:12:30 [pool-2-thread-4] INFO  ExonSkipping - Finished to look at transcript ENST00000454018
+2024-10-23 18:12:30 [pool-2-thread-6] INFO  ExonSkipping - Starting to look at transcript ENST00000474655
+2024-10-23 18:12:30 [pool-2-thread-4] INFO  ExonSkipping - Starting to look at transcript ENST00000367248
+2024-10-23 18:12:30 [pool-2-thread-3] INFO  ExonSkipping - Starting to look at transcript ENST00000367255
+2024-10-23 18:12:30 [pool-2-thread-7] INFO  ExonSkipping - Finished to look at transcript ENST00000367253
+2024-10-23 18:12:30 [pool-2-thread-7] INFO  ExonSkipping - Starting to look at transcript ENST00000413186
+2024-10-23 18:12:30 [pool-2-thread-4] INFO  ExonSkipping - Finished to look at transcript ENST00000367248
+2024-10-23 18:12:30 [pool-2-thread-1] INFO  ExonSkipping - Finished to look at transcript ENST00000265368
+2024-10-23 18:12:30 [pool-2-thread-6] INFO  ExonSkipping - Finished to look at transcript ENST00000474655
+2024-10-23 18:12:30 [pool-2-thread-9] INFO  ExonSkipping - Finished to look at transcript ENST00000466159
+2024-10-23 18:12:30 [pool-2-thread-7] INFO  ExonSkipping - Finished to look at transcript ENST00000413186
+2024-10-23 18:12:30 [pool-2-thread-8] INFO  ExonSkipping - Finished to look at transcript ENST00000495090
+2024-10-23 18:12:30 [pool-2-thread-5] INFO  ExonSkipping - Finished to look at transcript ENST00000423061
+2024-10-23 18:12:30 [pool-2-thread-2] INFO  ExonSkipping - Starting to look at transcript ENST00000367251
+2024-10-23 18:12:30 [pool-2-thread-2] INFO  ExonSkipping - Finished to look at transcript ENST00000367251
+2024-10-23 18:12:30 [pool-2-thread-10] INFO  ExonSkipping - Finished to look at transcript ENST00000341594
+2024-10-23 18:12:30 [pool-2-thread-3] INFO  ExonSkipping - Finished to look at transcript ENST00000367255
+2024-10-23 18:12:59 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 18:12:59 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 18:12:59 [main] INFO  Main - Time needed for parsing: 0.126 seconds
+2024-10-23 18:12:59 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 18:12:59 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 18:12:59 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 18:12:59 [pool-2-thread-1] INFO  ExonSkipping - Starting to look at transcript ENST00000354674
+2024-10-23 18:12:59 [pool-2-thread-3] INFO  ExonSkipping - Starting to look at transcript ENST00000537033
+2024-10-23 18:12:59 [pool-2-thread-2] INFO  ExonSkipping - Starting to look at transcript ENST00000469439
+2024-10-23 18:13:08 [pool-2-thread-7] INFO  ExonSkipping - Starting to look at transcript ENST00000356820
+2024-10-23 18:13:08 [pool-2-thread-6] INFO  ExonSkipping - Starting to look at transcript ENST00000448038
+2024-10-23 18:13:08 [pool-2-thread-8] INFO  ExonSkipping - Starting to look at transcript ENST00000495090
+2024-10-23 18:13:08 [pool-2-thread-10] INFO  ExonSkipping - Starting to look at transcript ENST00000341594
+2024-10-23 18:13:08 [pool-2-thread-5] INFO  ExonSkipping - Starting to look at transcript ENST00000423061
+2024-10-23 18:13:08 [pool-2-thread-4] INFO  ExonSkipping - Starting to look at transcript ENST00000537750
+2024-10-23 18:13:08 [pool-2-thread-9] INFO  ExonSkipping - Starting to look at transcript ENST00000466159
+2024-10-23 18:13:08 [pool-2-thread-2] INFO  ExonSkipping - Finished to look at transcript ENST00000469439
+2024-10-23 18:13:08 [pool-2-thread-9] INFO  ExonSkipping - Finished to look at transcript ENST00000466159
+2024-10-23 18:13:08 [pool-2-thread-1] INFO  ExonSkipping - Finished to look at transcript ENST00000354674
+2024-10-23 18:13:08 [pool-2-thread-9] INFO  ExonSkipping - Starting to look at transcript ENST00000367255
+2024-10-23 18:13:08 [pool-2-thread-1] INFO  ExonSkipping - Starting to look at transcript ENST00000539504
+2024-10-23 18:13:08 [pool-2-thread-1] INFO  ExonSkipping - Finished to look at transcript ENST00000539504
+2024-10-23 18:13:08 [pool-2-thread-1] INFO  ExonSkipping - Starting to look at transcript ENST00000367257
+2024-10-23 18:13:08 [pool-2-thread-7] INFO  ExonSkipping - Finished to look at transcript ENST00000356820
+2024-10-23 18:13:08 [pool-2-thread-7] INFO  ExonSkipping - Starting to look at transcript ENST00000265368
+2024-10-23 18:13:08 [pool-2-thread-3] INFO  ExonSkipping - Finished to look at transcript ENST00000537033
+2024-10-23 18:13:08 [pool-2-thread-3] INFO  ExonSkipping - Starting to look at transcript ENST00000367251
+2024-10-23 18:13:08 [pool-2-thread-3] INFO  ExonSkipping - Finished to look at transcript ENST00000367251
+2024-10-23 18:13:08 [pool-2-thread-3] INFO  ExonSkipping - Starting to look at transcript ENST00000540663
+2024-10-23 18:13:08 [pool-2-thread-9] INFO  ExonSkipping - Finished to look at transcript ENST00000367255
+2024-10-23 18:13:08 [pool-2-thread-3] INFO  ExonSkipping - Finished to look at transcript ENST00000540663
+2024-10-23 18:13:08 [pool-2-thread-4] INFO  ExonSkipping - Finished to look at transcript ENST00000537750
+2024-10-23 18:13:08 [pool-2-thread-9] INFO  ExonSkipping - Starting to look at transcript ENST00000367253
+2024-10-23 18:13:08 [pool-2-thread-6] INFO  ExonSkipping - Finished to look at transcript ENST00000448038
+2024-10-23 18:13:08 [pool-2-thread-3] INFO  ExonSkipping - Starting to look at transcript ENST00000474655
+2024-10-23 18:13:08 [pool-2-thread-3] INFO  ExonSkipping - Finished to look at transcript ENST00000474655
+2024-10-23 18:13:08 [pool-2-thread-6] INFO  ExonSkipping - Starting to look at transcript ENST00000413186
+2024-10-23 18:13:08 [pool-2-thread-8] INFO  ExonSkipping - Finished to look at transcript ENST00000495090
+2024-10-23 18:13:08 [pool-2-thread-1] INFO  ExonSkipping - Finished to look at transcript ENST00000367257
+2024-10-23 18:13:08 [pool-2-thread-4] INFO  ExonSkipping - Starting to look at transcript ENST00000367248
+2024-10-23 18:13:08 [pool-2-thread-6] INFO  ExonSkipping - Finished to look at transcript ENST00000413186
+2024-10-23 18:13:08 [pool-2-thread-2] INFO  ExonSkipping - Starting to look at transcript ENST00000454018
+2024-10-23 18:13:08 [pool-2-thread-5] INFO  ExonSkipping - Finished to look at transcript ENST00000423061
+2024-10-23 18:13:08 [pool-2-thread-2] INFO  ExonSkipping - Finished to look at transcript ENST00000454018
+2024-10-23 18:13:08 [pool-2-thread-9] INFO  ExonSkipping - Finished to look at transcript ENST00000367253
+2024-10-23 18:13:08 [pool-2-thread-4] INFO  ExonSkipping - Finished to look at transcript ENST00000367248
+2024-10-23 18:13:08 [pool-2-thread-10] INFO  ExonSkipping - Finished to look at transcript ENST00000341594
+2024-10-23 18:13:08 [pool-2-thread-7] INFO  ExonSkipping - Finished to look at transcript ENST00000265368
+2024-10-23 18:13:12 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 18:13:12 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 18:13:12 [main] INFO  Main - Time needed for parsing: 0.102 seconds
+2024-10-23 18:13:12 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 18:13:12 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 18:13:12 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 18:13:12 [pool-2-thread-5] INFO  ExonSkipping - Starting to look at transcript ENST00000423061
+2024-10-23 18:13:12 [pool-2-thread-3] INFO  ExonSkipping - Starting to look at transcript ENST00000537033
+2024-10-23 18:13:12 [pool-2-thread-4] INFO  ExonSkipping - Starting to look at transcript ENST00000537750
+2024-10-23 18:13:12 [pool-2-thread-1] INFO  ExonSkipping - Starting to look at transcript ENST00000354674
+2024-10-23 18:13:12 [pool-2-thread-2] INFO  ExonSkipping - Starting to look at transcript ENST00000469439
+2024-10-23 18:13:19 [pool-2-thread-9] INFO  ExonSkipping - Starting to look at transcript ENST00000466159
+2024-10-23 18:13:19 [pool-2-thread-8] INFO  ExonSkipping - Starting to look at transcript ENST00000495090
+2024-10-23 18:13:19 [pool-2-thread-7] INFO  ExonSkipping - Starting to look at transcript ENST00000356820
+2024-10-23 18:13:19 [pool-2-thread-6] INFO  ExonSkipping - Starting to look at transcript ENST00000448038
+2024-10-23 18:13:19 [pool-2-thread-10] INFO  ExonSkipping - Starting to look at transcript ENST00000341594
+2024-10-23 18:13:19 [pool-2-thread-3] INFO  ExonSkipping - Finished to look at transcript ENST00000537033
+2024-10-23 18:13:19 [pool-2-thread-9] INFO  ExonSkipping - Finished to look at transcript ENST00000466159
+2024-10-23 18:13:19 [pool-2-thread-8] INFO  ExonSkipping - Finished to look at transcript ENST00000495090
+2024-10-23 18:13:19 [pool-2-thread-3] INFO  ExonSkipping - Starting to look at transcript ENST00000454018
+2024-10-23 18:13:19 [pool-2-thread-4] INFO  ExonSkipping - Finished to look at transcript ENST00000537750
+2024-10-23 18:13:19 [pool-2-thread-8] INFO  ExonSkipping - Starting to look at transcript ENST00000539504
+2024-10-23 18:13:19 [pool-2-thread-4] INFO  ExonSkipping - Starting to look at transcript ENST00000367257
+2024-10-23 18:13:19 [pool-2-thread-8] INFO  ExonSkipping - Finished to look at transcript ENST00000539504
+2024-10-23 18:13:19 [pool-2-thread-1] INFO  ExonSkipping - Finished to look at transcript ENST00000354674
+2024-10-23 18:13:19 [pool-2-thread-2] INFO  ExonSkipping - Finished to look at transcript ENST00000469439
+2024-10-23 18:13:19 [pool-2-thread-8] INFO  ExonSkipping - Starting to look at transcript ENST00000265368
+2024-10-23 18:13:19 [pool-2-thread-1] INFO  ExonSkipping - Starting to look at transcript ENST00000367251
+2024-10-23 18:13:19 [pool-2-thread-3] INFO  ExonSkipping - Finished to look at transcript ENST00000454018
+2024-10-23 18:13:19 [pool-2-thread-3] INFO  ExonSkipping - Starting to look at transcript ENST00000367253
+2024-10-23 18:13:19 [pool-2-thread-9] INFO  ExonSkipping - Starting to look at transcript ENST00000367255
+2024-10-23 18:13:19 [pool-2-thread-7] INFO  ExonSkipping - Finished to look at transcript ENST00000356820
+2024-10-23 18:13:19 [pool-2-thread-7] INFO  ExonSkipping - Starting to look at transcript ENST00000474655
+2024-10-23 18:13:19 [pool-2-thread-7] INFO  ExonSkipping - Finished to look at transcript ENST00000474655
+2024-10-23 18:13:19 [pool-2-thread-7] INFO  ExonSkipping - Starting to look at transcript ENST00000367248
+2024-10-23 18:13:19 [pool-2-thread-7] INFO  ExonSkipping - Finished to look at transcript ENST00000367248
+2024-10-23 18:13:19 [pool-2-thread-1] INFO  ExonSkipping - Finished to look at transcript ENST00000367251
+2024-10-23 18:13:19 [pool-2-thread-6] INFO  ExonSkipping - Finished to look at transcript ENST00000448038
+2024-10-23 18:13:19 [pool-2-thread-8] INFO  ExonSkipping - Finished to look at transcript ENST00000265368
+2024-10-23 18:13:19 [pool-2-thread-7] INFO  ExonSkipping - Starting to look at transcript ENST00000413186
+2024-10-23 18:13:19 [pool-2-thread-4] INFO  ExonSkipping - Finished to look at transcript ENST00000367257
+2024-10-23 18:13:19 [pool-2-thread-5] INFO  ExonSkipping - Finished to look at transcript ENST00000423061
+2024-10-23 18:13:19 [pool-2-thread-7] INFO  ExonSkipping - Finished to look at transcript ENST00000413186
+2024-10-23 18:13:19 [pool-2-thread-2] INFO  ExonSkipping - Starting to look at transcript ENST00000540663
+2024-10-23 18:13:19 [pool-2-thread-9] INFO  ExonSkipping - Finished to look at transcript ENST00000367255
+2024-10-23 18:13:19 [pool-2-thread-10] INFO  ExonSkipping - Finished to look at transcript ENST00000341594
+2024-10-23 18:13:19 [pool-2-thread-2] INFO  ExonSkipping - Finished to look at transcript ENST00000540663
+2024-10-23 18:13:19 [pool-2-thread-3] INFO  ExonSkipping - Finished to look at transcript ENST00000367253
+2024-10-23 18:16:19 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-23 18:16:19 [main] INFO  GtfParser - GTF-File parsed
+2024-10-23 18:16:19 [main] INFO  Main - Time needed for parsing: 0.077 seconds
+2024-10-23 18:16:19 [main] INFO  Main - Starting exon skipping computation
+2024-10-23 18:16:19 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-23 18:16:19 [main] INFO  ExonSkipping - Looking at Gene ENSG00000131018
+2024-10-23 18:16:19 [pool-2-thread-2] INFO  ExonSkipping - Starting to look at transcript ENST00000469439
+2024-10-23 18:16:19 [pool-2-thread-3] INFO  ExonSkipping - Starting to look at transcript ENST00000537033
+2024-10-23 18:16:19 [pool-2-thread-1] INFO  ExonSkipping - Starting to look at transcript ENST00000354674
+2024-10-23 18:16:19 [pool-2-thread-7] INFO  ExonSkipping - Starting to look at transcript ENST00000356820
+2024-10-23 18:16:19 [pool-2-thread-10] INFO  ExonSkipping - Starting to look at transcript ENST00000341594
+2024-10-23 18:16:19 [pool-2-thread-6] INFO  ExonSkipping - Starting to look at transcript ENST00000448038
+2024-10-23 18:16:19 [pool-2-thread-4] INFO  ExonSkipping - Starting to look at transcript ENST00000537750
+2024-10-23 18:16:19 [pool-2-thread-5] INFO  ExonSkipping - Starting to look at transcript ENST00000423061
+2024-10-23 18:16:19 [pool-2-thread-9] INFO  ExonSkipping - Starting to look at transcript ENST00000466159
+2024-10-23 18:16:19 [pool-2-thread-8] INFO  ExonSkipping - Starting to look at transcript ENST00000495090
+2024-10-23 18:16:19 [pool-2-thread-9] INFO  ExonSkipping - Finished to look at transcript ENST00000466159
+2024-10-23 18:16:19 [pool-2-thread-9] INFO  ExonSkipping - Starting to look at transcript ENST00000454018
+2024-10-23 18:16:19 [pool-2-thread-1] INFO  ExonSkipping - Finished to look at transcript ENST00000354674
+2024-10-23 18:16:19 [pool-2-thread-3] INFO  ExonSkipping - Finished to look at transcript ENST00000537033
+2024-10-23 18:16:19 [pool-2-thread-9] INFO  ExonSkipping - Finished to look at transcript ENST00000454018
+2024-10-23 18:16:19 [pool-2-thread-3] INFO  ExonSkipping - Starting to look at transcript ENST00000367255
+2024-10-23 18:16:19 [pool-2-thread-9] INFO  ExonSkipping - Starting to look at transcript ENST00000367257
+2024-10-23 18:16:19 [pool-2-thread-2] INFO  ExonSkipping - Finished to look at transcript ENST00000469439
+2024-10-23 18:16:19 [pool-2-thread-2] INFO  ExonSkipping - Starting to look at transcript ENST00000265368
+2024-10-23 18:16:19 [pool-2-thread-1] INFO  ExonSkipping - Starting to look at transcript ENST00000539504
+2024-10-23 18:16:19 [pool-2-thread-1] INFO  ExonSkipping - Finished to look at transcript ENST00000539504
+2024-10-23 18:16:19 [pool-2-thread-4] INFO  ExonSkipping - Finished to look at transcript ENST00000537750
+2024-10-23 18:16:19 [pool-2-thread-7] INFO  ExonSkipping - Finished to look at transcript ENST00000356820
+2024-10-23 18:16:19 [pool-2-thread-7] INFO  ExonSkipping - Starting to look at transcript ENST00000367253
+2024-10-23 18:16:19 [pool-2-thread-7] INFO  ExonSkipping - Finished to look at transcript ENST00000367253
+2024-10-23 18:16:19 [pool-2-thread-10] INFO  ExonSkipping - Finished to look at transcript ENST00000341594
+2024-10-23 18:16:19 [pool-2-thread-7] INFO  ExonSkipping - Starting to look at transcript ENST00000474655
+2024-10-23 18:16:19 [pool-2-thread-1] INFO  ExonSkipping - Starting to look at transcript ENST00000367251
+2024-10-23 18:16:19 [pool-2-thread-7] INFO  ExonSkipping - Finished to look at transcript ENST00000474655
+2024-10-23 18:16:19 [pool-2-thread-7] INFO  ExonSkipping - Starting to look at transcript ENST00000413186
+2024-10-23 18:16:19 [pool-2-thread-1] INFO  ExonSkipping - Finished to look at transcript ENST00000367251
+2024-10-23 18:16:19 [pool-2-thread-8] INFO  ExonSkipping - Finished to look at transcript ENST00000495090
+2024-10-23 18:16:19 [pool-2-thread-9] INFO  ExonSkipping - Finished to look at transcript ENST00000367257
+2024-10-23 18:16:19 [pool-2-thread-4] INFO  ExonSkipping - Starting to look at transcript ENST00000540663
+2024-10-23 18:16:19 [pool-2-thread-7] INFO  ExonSkipping - Finished to look at transcript ENST00000413186
+2024-10-23 18:16:19 [pool-2-thread-4] INFO  ExonSkipping - Finished to look at transcript ENST00000540663
+2024-10-23 18:16:19 [pool-2-thread-5] INFO  ExonSkipping - Finished to look at transcript ENST00000423061
+2024-10-23 18:16:19 [pool-2-thread-3] INFO  ExonSkipping - Finished to look at transcript ENST00000367255
+2024-10-23 18:16:19 [pool-2-thread-10] INFO  ExonSkipping - Starting to look at transcript ENST00000367248
+2024-10-23 18:16:19 [pool-2-thread-10] INFO  ExonSkipping - Finished to look at transcript ENST00000367248
+2024-10-23 18:16:19 [pool-2-thread-2] INFO  ExonSkipping - Finished to look at transcript ENST00000265368
+2024-10-23 18:16:19 [pool-2-thread-6] INFO  ExonSkipping - Finished to look at transcript ENST00000448038

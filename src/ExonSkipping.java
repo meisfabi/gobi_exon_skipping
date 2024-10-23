@@ -1,43 +1,69 @@
-import Model.GTF;
+import Extensions.ExecutorServiceExtensions;
+import Model.GtfRecord;
+import Model.Intron;
+import augmentedTree.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class ExonSkipping {
+    private static final Logger logger = LoggerFactory.getLogger(ExonSkipping.class);
+    public static void compute(Map<String, Map<String, TreeMap<Integer, GtfRecord>>[]> data, String outputPath){
+        logger.info("Starting to compute WTs and SVs");
+        var executorService = Executors.newFixedThreadPool(10);
+        for(var geneEntry : data.entrySet()){
+            var geneId = geneEntry.getKey();
+            logger.info(String.format("Looking at Gene %s", geneId));
+            var transcriptArray = geneEntry.getValue();
+            var transcriptCdsMap = transcriptArray[Constants.CDS_INDEX];
 
-    public static void compute(Map<String, TreeMap<Long, GTF>>[] data, String outputPath){
-        var cdsMap = data[Constants.CDS_INDEX]; // nprots = cdsMap.size()
-        var exonsMap = data[Constants.EXON_INDEX]; // ntrans = exonsMap.size()
+            var intronsForTranscript = Collections.synchronizedList(new ArrayList<IntervalTree<Intron>>());
 
-        for (var transcriptId : cdsMap.keySet()) {
-            var currentExons = exonsMap.getOrDefault(transcriptId, null);
-            if (currentExons == null) continue; // skip, if there are no exons for this transcript
-            var currentCds = cdsMap.get(transcriptId);
+            // get all introns
+            var futures = new ArrayList<Future<IntervalTree<Intron>>>();
 
-            for (var cdsEntry : currentCds.entrySet()) {
-                var cdsStart = cdsEntry.getKey();
-                var cdsGtf = cdsEntry.getValue();
-                var cdsEnd = cdsGtf.getEnd();
+            for(var transcriptEntry : transcriptCdsMap.entrySet()){
+                var transcriptId = transcriptEntry.getKey();
+                var intronsFuture = executorService.submit(() -> getIntrons(transcriptEntry, geneId, transcriptId));
+                futures.add(intronsFuture);
+            }
 
-                for(var currentExonEntry : currentExons.entrySet()){
-                    var currentExon = currentExonEntry.getValue();
-                    var currentExonStart = currentExonEntry.getKey();
-                    var currentExonEnd = currentExon.getEnd();
-                    if(cdsStart.equals(currentExonStart) && currentExonEnd == cdsEnd) {
-                        // WT
-                        System.out.printf("%s:%s%n", cdsStart, cdsEnd);
-                        System.out.println();
-                    } else if((currentExonEnd >= cdsStart && currentExonEnd <= cdsEnd)){
-                        // SV found
-                        System.out.printf("%s:%s%n", currentExonStart, cdsStart - 1);
-                        System.out.println();
-                    } else if((currentExonStart <= cdsEnd && currentExonStart >= cdsStart)){
-                        // SV found
-                        System.out.printf("%s:%s%n", cdsEnd + 1, currentExonEnd);
-                        System.out.println();
-                    }
+            for (var future : futures) {
+                try {
+                    intronsForTranscript.add(future.get());
+                } catch (InterruptedException e) {
+                    logger.error(String.format("Got interrupted while looking at introns for gene %s", geneId), e);
+                    Thread.currentThread().interrupt();
+                } catch (ExecutionException e) {
+                    logger.error(String.format("Execution error while looking at introns for gene %s", geneId), e);
                 }
             }
         }
+        ExecutorServiceExtensions.shutdownExecutorService(executorService);
+    }
 
+    private static IntervalTree<Intron> getIntrons(Map.Entry<String, TreeMap<Integer, GtfRecord>> transcriptEntry, String geneId, String transcriptId) {
+        logger.info(String.format("Starting to look at transcript %s", transcriptId));
+        var cdsMap = transcriptEntry.getValue();
+
+        GtfRecord lastCds = null;
+        var introns = new IntervalTree<Intron>();
+
+        for(var cds: cdsMap.values()){
+            if(lastCds == null){
+                lastCds = cds;
+                continue;
+            }
+
+            var currentIntron = new Intron(geneId, transcriptId, cds.getGeneName(), cds.getStrand(), cds.getSeqName(), lastCds.getStop() + 1, cds.getStart());
+            introns.add(currentIntron);
+            lastCds = cds;
+        }
+        logger.info(String.format("Finished to look at transcript %s", transcriptId));
+        return introns;
     }
 }

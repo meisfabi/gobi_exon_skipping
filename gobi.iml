@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="net.sourceforge.argparse4j" level="project" />
     <orderEntry type="library" name="ch.qos.logback.classic" level="project" />
+    <orderEntry type="library" name="AugmentedTree" level="project" />
   </component>
 </module>
