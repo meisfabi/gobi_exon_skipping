@@ -18,7 +18,10 @@ public class Main {
             var data = GtfParser.parse(res.get("gtf"));
             logger.info(String.format("Time needed for parsing: %s seconds", (System.currentTimeMillis() - start) / 1000.0));
             logger.info("Starting exon skipping computation");
+            start = System.currentTimeMillis();
             ExonSkipping.compute(data, res.get("o"));
+            logger.info("Finished exon skipping computation");
+            logger.info(String.format("Time needed for exon skipping: %s seconds", (System.currentTimeMillis() - start) / 1000.0));
         } catch(ArgumentParserException e){
             parser.printHelp();
         } catch (Exception e) {

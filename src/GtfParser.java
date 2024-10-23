@@ -68,6 +68,7 @@ public class GtfParser {
         return parsedGTF;
     }
 
+    // TODO remove split and do it manually
     private static void processLine(String line){
         var splitLine = line.split("\t");
         if(!splitLine[2].equals("exon") && !splitLine[2].equals("CDS"))
@@ -113,7 +114,6 @@ public class GtfParser {
                         transcriptId = value;
                         gtf.setTranscriptId(value);
                         break;
-
                     case "exon_number":
                         gtf.setExonNumber(Integer.parseInt(value));
                         break;

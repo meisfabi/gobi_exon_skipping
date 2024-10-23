@@ -1,4 +1,5 @@
 import Extensions.ExecutorServiceExtensions;
+import Model.EsSe;
 import Model.GtfRecord;
 import Model.Intron;
 import augmentedTree.*;
@@ -12,29 +13,29 @@ import java.util.concurrent.Future;
 
 public class ExonSkipping {
     private static final Logger logger = LoggerFactory.getLogger(ExonSkipping.class);
+    private static final Map<String, List<Intron>> intronByTranscriptMap = Collections.synchronizedMap(new HashMap<>());
     public static void compute(Map<String, Map<String, TreeMap<Integer, GtfRecord>>[]> data, String outputPath){
         logger.info("Starting to compute WTs and SVs");
-        var executorService = Executors.newFixedThreadPool(10);
+        var executorService = Executors.newFixedThreadPool(1);
         for(var geneEntry : data.entrySet()){
             var geneId = geneEntry.getKey();
-            logger.info(String.format("Looking at Gene %s", geneId));
             var transcriptArray = geneEntry.getValue();
             var transcriptCdsMap = transcriptArray[Constants.CDS_INDEX];
 
-            var intronsForTranscript = Collections.synchronizedList(new ArrayList<IntervalTree<Intron>>());
+            var intronsForGene = new IntervalTree<Intron>();
 
             // get all introns
-            var futures = new ArrayList<Future<IntervalTree<Intron>>>();
-
+            var getIntronFutures = new ArrayList<Future<ArrayList<Intron>>>();
+            if(transcriptCdsMap == null || transcriptCdsMap.isEmpty()) continue;
             for(var transcriptEntry : transcriptCdsMap.entrySet()){
                 var transcriptId = transcriptEntry.getKey();
-                var intronsFuture = executorService.submit(() -> getIntrons(transcriptEntry, geneId, transcriptId));
-                futures.add(intronsFuture);
+                var intronsForTranscriptFuture = executorService.submit(() -> getIntrons(transcriptEntry, geneId, transcriptId));
+                getIntronFutures.add(intronsForTranscriptFuture);
             }
 
-            for (var future : futures) {
+            for (var future : getIntronFutures) {
                 try {
-                    intronsForTranscript.add(future.get());
+                    intronsForGene.addAll(future.get());
                 } catch (InterruptedException e) {
                     logger.error(String.format("Got interrupted while looking at introns for gene %s", geneId), e);
                     Thread.currentThread().interrupt();
@@ -42,28 +43,85 @@ public class ExonSkipping {
                     logger.error(String.format("Execution error while looking at introns for gene %s", geneId), e);
                 }
             }
+
+            // compare
+            var esSe = Collections.synchronizedSet(new HashSet<EsSe>());
+            calculateEsSe(esSe, intronsForGene);
+            var a = "";
         }
         ExecutorServiceExtensions.shutdownExecutorService(executorService);
     }
 
-    private static IntervalTree<Intron> getIntrons(Map.Entry<String, TreeMap<Integer, GtfRecord>> transcriptEntry, String geneId, String transcriptId) {
-        logger.info(String.format("Starting to look at transcript %s", transcriptId));
+    private static ArrayList<Intron> getIntrons(Map.Entry<String, TreeMap<Integer, GtfRecord>> transcriptEntry, String geneId, String transcriptId) {
         var cdsMap = transcriptEntry.getValue();
 
         GtfRecord lastCds = null;
-        var introns = new IntervalTree<Intron>();
+        var introns = new ArrayList<Intron>();
 
         for(var cds: cdsMap.values()){
             if(lastCds == null){
                 lastCds = cds;
                 continue;
             }
-
-            var currentIntron = new Intron(geneId, transcriptId, cds.getGeneName(), cds.getStrand(), cds.getSeqName(), lastCds.getStop() + 1, cds.getStart());
+            var currentIntron = new Intron(geneId, transcriptId, cds.getProteinId(), cds.getGeneName(), cds.getStrand(), cds.getSeqName(), lastCds.getStop() + 1, cds.getStart());
             introns.add(currentIntron);
+            intronByTranscriptMap.putIfAbsent(transcriptId, new ArrayList<>());
+            synchronized (intronByTranscriptMap.get(transcriptId)){
+                intronByTranscriptMap.get(transcriptId).addAll(introns);
+            }
+
             lastCds = cds;
         }
-        logger.info(String.format("Finished to look at transcript %s", transcriptId));
         return introns;
+    }
+
+    private static void calculateEsSe(Set<EsSe> esSe, IntervalTree<Intron> intronsForGene){
+        for(var intronEntry : intronByTranscriptMap.entrySet()){
+            for(var intron : intronEntry.getValue()){
+
+                var spannedBy = new IntronByTranscriptMap();
+                intronsForGene.getIntervalsSpannedBy(intron.getStart(), intron.getStop(), spannedBy);
+
+                if(spannedBy.entrySet().size() <= 1)  continue;
+                var copyOfSpannedByEntrySet = Set.copyOf(spannedBy.entrySet());
+                var hasSizeGreater2 = false;
+                for(var spannedByEntry : copyOfSpannedByEntrySet){
+                    var intronList = spannedByEntry.getValue();
+                    if(intronList.size() > 1){
+                        hasSizeGreater2 = true;
+                        boolean hasStart = false, hasStop = false;
+                        var copyOfIntronList = List.copyOf(intronList);
+                        for(var intronToBeChecked : copyOfIntronList){
+                            if(intronToBeChecked.getStart() == intron.getStart()){
+                                hasStart = true;
+                            }
+
+                            if(intronToBeChecked.getStop() == intron.getStop()){
+                                hasStop = true;
+                            }
+                        }
+
+                        if(!hasStart || !hasStop){
+                            spannedBy.entrySet().remove(spannedByEntry);
+                        }
+                    }
+                }
+
+                if(!hasSizeGreater2) continue;
+
+                if(spannedBy.size() <= 1) continue;
+
+
+                if(intron.getStart() == 152646438 && intron.getStop() == 152647448){
+                    var a = "";
+                }
+                for(var intronWithSV : spannedBy.entrySet()) {
+                    var list = intronWithSV.getValue();
+                    esSe.add(new EsSe(list.getFirst()));
+                    break;
+                }
+
+            }
+        }
     }
 }
