@@ -6,7 +6,6 @@ import augmentedTree.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Array;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
@@ -19,6 +18,7 @@ public class ExonSkipping {
     public static void compute(Map<String, Map<String, TreeMap<Integer, GtfRecord>>[]> data, String outputPath) {
         logger.info("Starting to compute WTs and SVs");
         var executorService = Executors.newFixedThreadPool(10);
+        var esSe = new HashSet<EsSe>();
         for (var geneEntry : data.entrySet()) {
             var geneId = geneEntry.getKey();
             var transcriptArray = geneEntry.getValue();
@@ -50,11 +50,11 @@ public class ExonSkipping {
             }
 
             // compare
-            var esSe = Collections.synchronizedSet(new HashSet<EsSe>());
             calculateEsSe(esSe, allIntronsForGene, intronsWithUniqueStartAndStop, transcriptArray[Constants.CDS_INDEX].size(), transcriptArray[Constants.EXON_INDEX].size());
-            var a = "";
         }
         ExecutorServiceExtensions.shutdownExecutorService(executorService);
+
+        Writer.writeTsv(outputPath, esSe);
     }
 
     private static ArrayList<Intron> getIntrons(Map.Entry<String, TreeMap<Integer, GtfRecord>> transcriptEntry, String geneId, String transcriptId) {

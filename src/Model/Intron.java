@@ -56,6 +56,7 @@ public class Intron implements Interval, Comparable<Intron> {
         return proteinId;
     }
 
+    public String getChromosome() { return chromosome; }
 
     @Override
     public int compareTo(Intron o) {
