@@ -17,7 +17,7 @@ public class ExonSkipping {
 
     public static void compute(Map<String, Map<String, TreeMap<Integer, GtfRecord>>[]> data, String outputPath) {
         logger.info("Starting to compute WTs and SVs");
-        var executorService = Executors.newFixedThreadPool(10);
+        var executorService = Executors.newFixedThreadPool(1);
         var esSe = new HashSet<EsSe>();
         for (var geneEntry : data.entrySet()) {
             var geneId = geneEntry.getKey();
@@ -49,8 +49,19 @@ public class ExonSkipping {
                 }
             }
 
+            int nProts = 0, nTrans = 0;
+            if(transcriptArray[Constants.CDS_INDEX] != null){
+                nProts = transcriptArray[Constants.CDS_INDEX].size();
+            }
+
+            if(transcriptArray[Constants.EXON_INDEX] != null){
+                nTrans = transcriptArray[Constants.EXON_INDEX].size();
+            }
             // compare
-            calculateEsSe(esSe, allIntronsForGene, intronsWithUniqueStartAndStop, transcriptArray[Constants.CDS_INDEX].size(), transcriptArray[Constants.EXON_INDEX].size());
+            if(geneId.equals("ENSG00000117676")){
+                var a = "";
+            }
+            calculateEsSe(esSe, allIntronsForGene, intronsWithUniqueStartAndStop, nProts , nTrans);
         }
         ExecutorServiceExtensions.shutdownExecutorService(executorService);
 
@@ -68,6 +79,7 @@ public class ExonSkipping {
                 lastCds = cds;
                 continue;
             }
+
             var currentIntron = new Intron(geneId, transcriptId, cds.getProteinId(), cds.getGeneName(), cds.getStrand(), cds.getSeqName(), lastCds.getStop() + 1, cds.getStart());
             introns.add(currentIntron);
             intronByTranscriptMap.putIfAbsent(transcriptId, new ArrayList<>());
@@ -83,7 +95,9 @@ public class ExonSkipping {
     private static void calculateEsSe(Set<EsSe> esSe, IntervalTree<Intron> intronsForGene, Set<Intron> setWithUniqueStartAndStopIntrons, int nProts, int nTrans) {
 
         for (var intron : setWithUniqueStartAndStopIntrons) {
-
+            if(intron.getStart() == 69_577_316 && intron.getStop() == 69_581_621){
+                 var a = "";
+            }
             var spannedBy = new IntronByTranscriptMap();
             intronsForGene.getIntervalsSpannedBy(intron.getStart(), intron.getStop(), spannedBy);
             var wtProts = new ArrayList<String>();
@@ -116,6 +130,12 @@ public class ExonSkipping {
                     hasSizeGreater2 = true;
 
                 } else if(intronList.size() == 1){
+                    var onlyIntron = intronList.getFirst();
+
+                    if(intron.getStart() != onlyIntron.getStart() || intron.getStop() != onlyIntron.getStop()){
+                        spannedBy.entrySet().remove(spannedByEntry);
+                        continue;
+                    }
                     hasSize1 = true;
                 }
             }

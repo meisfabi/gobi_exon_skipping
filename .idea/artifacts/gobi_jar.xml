@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="gobi:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/gobi_jar</output-path>
+    <root id="archive" name="gobi.jar">
+      <element id="module-output" name="gobi" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/net/sourceforge/argparse4j/argparse4j/0.9.0/argparse4j-0.9.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/AugmentedTree.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/ch/qos/logback/logback-classic/1.5.6/logback-classic-1.5.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/ch/qos/logback/logback-core/1.5.6/logback-core-1.5.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/2.0.13/slf4j-api-2.0.13.jar" path-in-jar="/" />
+      <element id="module-source" name="gobi" />
+    </root>
+  </artifact>
+</component>

@@ -82,15 +82,12 @@ public class Intron implements Interval, Comparable<Intron> {
         Intron intron = (Intron) o;
         // field comparison
         return start == intron.start
-                && stop ==  intron.stop
-                && proteinId.equals(intron.proteinId)
-                && transcriptId.equals(intron.transcriptId)
-                && geneId.equals(intron.geneId);
+                && stop ==  intron.stop;
 
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(start, stop, proteinId, transcriptId, geneId);
+        return Objects.hash(start, stop);
     }
 }

@@ -80,13 +80,14 @@ public class EsSe extends Intron  {
         EsSe esSe = (EsSe) o;
         // field comparison
         return start == esSe.start
-                && stop ==  esSe.stop;
+                && stop ==  esSe.stop
+                && geneId.equals(esSe.geneId);
 
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(start, stop);
+        return Objects.hash(start, stop, geneId);
     }
 
 }

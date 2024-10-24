@@ -23,7 +23,7 @@ public class GtfRecord implements Interval {
     private double score;
     private char strand;
     private int frame;
-    private Integer exonNumber;
+    private String exonNumber;
 
     // 1. seqName
     public String getSeqName() {
@@ -128,11 +128,11 @@ public class GtfRecord implements Interval {
 
     // 12. exon_number
 
-    public int getExonNumber() {
+    public String getExonNumber() {
         return exonNumber;
     }
 
-    public void setExonNumber(Integer exonNumber) {
+    public void setExonNumber(String exonNumber) {
         this.exonNumber = exonNumber;
     }
 
