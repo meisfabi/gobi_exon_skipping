@@ -1,11 +1,11 @@
 package Model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import com.sun.source.tree.Tree;
+
+import java.util.*;
 
 public class EsSe extends Intron  {
-    private List<Intron> wildtypes = new ArrayList<>();
+    private Set<Intron> wildtypes = new TreeSet<>();
     private List<String> wildtypeProteins= new ArrayList<>();
     private List<String> splicingVariantProteins = new ArrayList<>();
     private int minSkippedExon;
@@ -15,15 +15,7 @@ public class EsSe extends Intron  {
     private int nProts;
     private int nTrans;
 
-    public EsSe(Intron intron, int minSkippedExon, int maxSkippedExon, int minSkippedBases, int maxSkippedBases) {
-        super(intron.geneId, intron.transcriptId, intron.proteinId, intron.symbol, intron.strand, intron.chromosome, intron.start, intron.stop);
-        this.minSkippedBases = minSkippedBases;
-        this.maxSkippedBases = maxSkippedBases;
-        this.minSkippedExon = minSkippedExon;
-        this.maxSkippedExon = maxSkippedExon;
-    }
-
-    public EsSe(Intron intron, List<Intron> wildtypes, List<String> wildtypeProteins, List<String> splicingVariantProteins, int minSkippedBases, int maxSkippedBases, int minSkippedExon, int maxSkippedExon, int nProts, int nTrans) {
+    public EsSe(Intron intron, TreeSet<Intron> wildtypes, List<String> wildtypeProteins, List<String> splicingVariantProteins, int minSkippedExon, int maxSkippedExon, int minSkippedBases, int maxSkippedBases, int nProts, int nTrans) {
         super(intron.geneId, intron.transcriptId, intron.proteinId, intron.symbol, intron.strand, intron.chromosome, intron.start, intron.stop);
         this.minSkippedBases = minSkippedBases;
         this.maxSkippedBases = maxSkippedBases;
@@ -32,10 +24,11 @@ public class EsSe extends Intron  {
         this.nProts = nProts;
         this.nTrans = nTrans;
 
-        this.wildtypes = List.copyOf(wildtypes);
+        this.wildtypes = Set.copyOf(wildtypes);
         this.wildtypeProteins = List.copyOf(wildtypeProteins);
         this.splicingVariantProteins = List.copyOf(splicingVariantProteins);
     }
+
 
     public int getMinSkippedBases() {
         return minSkippedBases;

@@ -386,3 +386,185 @@ java.util.ConcurrentModificationException: null
 2024-10-24 01:50:38 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
 2024-10-24 01:50:40 [main] INFO  Main - Finished exon skipping computation
 2024-10-24 01:50:40 [main] INFO  Main - Time needed for exon skipping: 2.04 seconds
+2024-10-24 01:54:40 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 01:54:52 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 01:54:52 [main] INFO  Main - Time needed for parsing: 12.408 seconds
+2024-10-24 01:54:52 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 01:54:52 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 01:54:55 [main] INFO  Main - Finished exon skipping computation
+2024-10-24 01:54:55 [main] INFO  Main - Time needed for exon skipping: 2.659 seconds
+2024-10-24 01:57:32 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 01:57:49 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 01:57:49 [main] INFO  Main - Time needed for parsing: 17.29 seconds
+2024-10-24 01:57:49 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 01:57:49 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 02:00:05 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 02:00:05 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 02:00:05 [main] INFO  Main - Time needed for parsing: 0.119 seconds
+2024-10-24 02:00:05 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 02:00:05 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 02:00:31 [main] INFO  Main - Finished exon skipping computation
+2024-10-24 02:00:31 [main] INFO  Main - Time needed for exon skipping: 26.053 seconds
+2024-10-24 02:00:35 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 02:00:35 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 02:00:35 [main] INFO  Main - Time needed for parsing: 0.1 seconds
+2024-10-24 02:00:35 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 02:00:35 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 02:00:40 [main] INFO  Main - Finished exon skipping computation
+2024-10-24 02:00:40 [main] INFO  Main - Time needed for exon skipping: 4.93 seconds
+2024-10-24 02:00:44 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 02:00:45 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 02:00:45 [main] INFO  Main - Time needed for parsing: 0.118 seconds
+2024-10-24 02:00:45 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 02:00:45 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 02:00:49 [main] INFO  Main - Finished exon skipping computation
+2024-10-24 02:00:49 [main] INFO  Main - Time needed for exon skipping: 4.634 seconds
+2024-10-24 02:01:20 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 02:01:20 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 02:01:20 [main] INFO  Main - Time needed for parsing: 0.102 seconds
+2024-10-24 02:01:20 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 02:01:20 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 02:01:47 [main] INFO  Main - Finished exon skipping computation
+2024-10-24 02:01:47 [main] INFO  Main - Time needed for exon skipping: 26.878 seconds
+2024-10-24 02:02:06 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 02:02:06 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 02:02:06 [main] INFO  Main - Time needed for parsing: 0.093 seconds
+2024-10-24 02:02:06 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 02:02:06 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 02:02:08 [main] INFO  Main - Finished exon skipping computation
+2024-10-24 02:02:08 [main] INFO  Main - Time needed for exon skipping: 2.031 seconds
+2024-10-24 02:03:07 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 02:03:07 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 02:03:07 [main] INFO  Main - Time needed for parsing: 0.107 seconds
+2024-10-24 02:03:07 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 02:03:07 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 02:03:15 [main] INFO  Main - Finished exon skipping computation
+2024-10-24 02:03:15 [main] INFO  Main - Time needed for exon skipping: 7.759 seconds
+2024-10-24 02:03:54 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 02:03:54 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 02:03:54 [main] INFO  Main - Time needed for parsing: 0.07 seconds
+2024-10-24 02:03:54 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 02:03:54 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 02:03:54 [main] INFO  Main - Finished exon skipping computation
+2024-10-24 02:03:54 [main] INFO  Main - Time needed for exon skipping: 0.037 seconds
+2024-10-24 02:04:34 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 02:04:34 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 02:04:34 [main] INFO  Main - Time needed for parsing: 0.135 seconds
+2024-10-24 02:04:34 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 02:04:34 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 02:07:43 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 02:07:43 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 02:07:43 [main] INFO  Main - Time needed for parsing: 0.108 seconds
+2024-10-24 02:07:43 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 02:07:43 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 02:08:21 [main] INFO  Main - Finished exon skipping computation
+2024-10-24 02:08:21 [main] INFO  Main - Time needed for exon skipping: 37.842 seconds
+2024-10-24 02:09:57 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 02:09:57 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 02:09:57 [main] INFO  Main - Time needed for parsing: 0.092 seconds
+2024-10-24 02:09:57 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 02:09:57 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 02:12:28 [main] INFO  Main - Finished exon skipping computation
+2024-10-24 02:12:28 [main] INFO  Main - Time needed for exon skipping: 151.353 seconds
+2024-10-24 02:12:43 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 02:12:52 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 02:12:52 [main] INFO  Main - Time needed for parsing: 9.671 seconds
+2024-10-24 02:12:52 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 02:12:52 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 02:12:55 [main] INFO  Main - Finished exon skipping computation
+2024-10-24 02:12:55 [main] INFO  Main - Time needed for exon skipping: 2.672 seconds
+2024-10-24 02:15:55 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 02:16:00 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 02:16:00 [main] INFO  Main - Time needed for parsing: 5.026 seconds
+2024-10-24 02:16:00 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 02:16:00 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 02:16:02 [main] INFO  Main - Finished exon skipping computation
+2024-10-24 02:16:02 [main] INFO  Main - Time needed for exon skipping: 1.678 seconds
+2024-10-24 02:17:33 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 02:17:47 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 02:17:47 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 02:17:47 [main] INFO  Main - Time needed for parsing: 0.109 seconds
+2024-10-24 02:17:47 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 02:17:47 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 02:19:38 [main] INFO  Main - Finished exon skipping computation
+2024-10-24 02:19:38 [main] INFO  Main - Time needed for exon skipping: 111.647 seconds
+2024-10-24 02:20:43 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 02:20:43 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 02:20:43 [main] INFO  Main - Time needed for parsing: 0.093 seconds
+2024-10-24 02:20:43 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 02:20:43 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 02:22:41 [main] INFO  Main - Finished exon skipping computation
+2024-10-24 02:22:41 [main] INFO  Main - Time needed for exon skipping: 117.132 seconds
+2024-10-24 02:22:47 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 02:22:47 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 02:22:47 [main] INFO  Main - Time needed for parsing: 0.097 seconds
+2024-10-24 02:22:47 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 02:22:47 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 02:22:54 [main] INFO  Main - Finished exon skipping computation
+2024-10-24 02:22:54 [main] INFO  Main - Time needed for exon skipping: 6.873 seconds
+2024-10-24 02:23:47 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 02:23:47 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 02:23:47 [main] INFO  Main - Time needed for parsing: 0.106 seconds
+2024-10-24 02:23:47 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 02:23:47 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 02:24:56 [main] INFO  Main - Finished exon skipping computation
+2024-10-24 02:24:56 [main] INFO  Main - Time needed for exon skipping: 69.469 seconds
+2024-10-24 02:25:00 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 02:25:00 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 02:25:00 [main] INFO  Main - Time needed for parsing: 0.106 seconds
+2024-10-24 02:25:00 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 02:25:00 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 02:26:57 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 02:26:57 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 02:26:57 [main] INFO  Main - Time needed for parsing: 0.108 seconds
+2024-10-24 02:26:57 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 02:26:57 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 02:28:01 [main] INFO  Main - Finished exon skipping computation
+2024-10-24 02:28:01 [main] INFO  Main - Time needed for exon skipping: 64.186 seconds
+2024-10-24 02:28:52 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 02:28:52 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 02:28:52 [main] INFO  Main - Time needed for parsing: 0.108 seconds
+2024-10-24 02:28:52 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 02:28:52 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 02:32:33 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 02:32:33 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 02:32:33 [main] INFO  Main - Time needed for parsing: 0.097 seconds
+2024-10-24 02:32:33 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 02:32:33 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 02:33:01 [main] INFO  Main - Finished exon skipping computation
+2024-10-24 02:33:01 [main] INFO  Main - Time needed for exon skipping: 27.797 seconds
+2024-10-24 02:34:23 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 02:34:23 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 02:34:23 [main] INFO  Main - Time needed for parsing: 0.115 seconds
+2024-10-24 02:34:23 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 02:34:23 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 02:35:02 [main] INFO  Main - Finished exon skipping computation
+2024-10-24 02:35:02 [main] INFO  Main - Time needed for exon skipping: 38.638 seconds
+2024-10-24 02:35:48 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 02:35:48 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 02:35:48 [main] INFO  Main - Time needed for parsing: 0.082 seconds
+2024-10-24 02:35:48 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 02:35:48 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 02:35:48 [main] INFO  Main - Finished exon skipping computation
+2024-10-24 02:35:48 [main] INFO  Main - Time needed for exon skipping: 0.037 seconds
+2024-10-24 02:35:51 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 02:35:51 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 02:35:51 [main] INFO  Main - Time needed for parsing: 0.107 seconds
+2024-10-24 02:35:51 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 02:35:51 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 02:36:00 [main] INFO  Main - Finished exon skipping computation
+2024-10-24 02:36:00 [main] INFO  Main - Time needed for exon skipping: 8.662 seconds
+2024-10-24 02:37:36 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 02:37:36 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 02:37:36 [main] INFO  Main - Time needed for parsing: 0.099 seconds
+2024-10-24 02:37:36 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 02:37:36 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 02:37:56 [main] INFO  Main - Finished exon skipping computation
+2024-10-24 02:37:56 [main] INFO  Main - Time needed for exon skipping: 19.849 seconds
+2024-10-24 02:39:06 [main] INFO  GtfParser - Starting to parse gtf file
+2024-10-24 02:39:06 [main] INFO  GtfParser - GTF-File parsed
+2024-10-24 02:39:06 [main] INFO  Main - Time needed for parsing: 0.096 seconds
+2024-10-24 02:39:06 [main] INFO  Main - Starting exon skipping computation
+2024-10-24 02:39:06 [main] INFO  ExonSkipping - Starting to compute WTs and SVs
+2024-10-24 02:39:19 [main] INFO  Main - Finished exon skipping computation
+2024-10-24 02:39:19 [main] INFO  Main - Time needed for exon skipping: 12.829 seconds

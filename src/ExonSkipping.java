@@ -6,6 +6,7 @@ import augmentedTree.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.sql.Array;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
@@ -14,10 +15,11 @@ import java.util.concurrent.Future;
 public class ExonSkipping {
     private static final Logger logger = LoggerFactory.getLogger(ExonSkipping.class);
     private static final Map<String, List<Intron>> intronByTranscriptMap = Collections.synchronizedMap(new HashMap<>());
-    public static void compute(Map<String, Map<String, TreeMap<Integer, GtfRecord>>[]> data, String outputPath){
+
+    public static void compute(Map<String, Map<String, TreeMap<Integer, GtfRecord>>[]> data, String outputPath) {
         logger.info("Starting to compute WTs and SVs");
-        var executorService = Executors.newFixedThreadPool(1);
-        for(var geneEntry : data.entrySet()){
+        var executorService = Executors.newFixedThreadPool(10);
+        for (var geneEntry : data.entrySet()) {
             var geneId = geneEntry.getKey();
             var transcriptArray = geneEntry.getValue();
             var transcriptCdsMap = transcriptArray[Constants.CDS_INDEX];
@@ -27,8 +29,8 @@ public class ExonSkipping {
 
             // get all introns
             var getIntronFutures = new ArrayList<Future<ArrayList<Intron>>>();
-            if(transcriptCdsMap == null || transcriptCdsMap.isEmpty()) continue;
-            for(var transcriptEntry : transcriptCdsMap.entrySet()){
+            if (transcriptCdsMap == null || transcriptCdsMap.isEmpty()) continue;
+            for (var transcriptEntry : transcriptCdsMap.entrySet()) {
                 var transcriptId = transcriptEntry.getKey();
                 var intronsForTranscriptFuture = executorService.submit(() -> getIntrons(transcriptEntry, geneId, transcriptId));
                 getIntronFutures.add(intronsForTranscriptFuture);
@@ -49,7 +51,7 @@ public class ExonSkipping {
 
             // compare
             var esSe = Collections.synchronizedSet(new HashSet<EsSe>());
-            calculateEsSe(esSe, allIntronsForGene, intronsWithUniqueStartAndStop);
+            calculateEsSe(esSe, allIntronsForGene, intronsWithUniqueStartAndStop, transcriptArray[Constants.CDS_INDEX].size(), transcriptArray[Constants.EXON_INDEX].size());
             var a = "";
         }
         ExecutorServiceExtensions.shutdownExecutorService(executorService);
@@ -61,15 +63,15 @@ public class ExonSkipping {
         GtfRecord lastCds = null;
         var introns = new ArrayList<Intron>();
 
-        for(var cds: cdsMap.values()){
-            if(lastCds == null){
+        for (var cds : cdsMap.values()) {
+            if (lastCds == null) {
                 lastCds = cds;
                 continue;
             }
             var currentIntron = new Intron(geneId, transcriptId, cds.getProteinId(), cds.getGeneName(), cds.getStrand(), cds.getSeqName(), lastCds.getStop() + 1, cds.getStart());
             introns.add(currentIntron);
             intronByTranscriptMap.putIfAbsent(transcriptId, new ArrayList<>());
-            synchronized (intronByTranscriptMap.get(transcriptId)){
+            synchronized (intronByTranscriptMap.get(transcriptId)) {
                 intronByTranscriptMap.get(transcriptId).addAll(introns);
             }
 
@@ -78,83 +80,101 @@ public class ExonSkipping {
         return introns;
     }
 
-    private static void calculateEsSe(Set<EsSe> esSe, IntervalTree<Intron> intronsForGene, Set<Intron> setWithUniqueStartAndStopIntrons){
-        //for(var intronEntry : intronByTranscriptMap.entrySet()){
-            for(var intron : setWithUniqueStartAndStopIntrons){
+    private static void calculateEsSe(Set<EsSe> esSe, IntervalTree<Intron> intronsForGene, Set<Intron> setWithUniqueStartAndStopIntrons, int nProts, int nTrans) {
 
-                var spannedBy = new IntronByTranscriptMap();
-                intronsForGene.getIntervalsSpannedBy(intron.getStart(), intron.getStop(), spannedBy);
+        for (var intron : setWithUniqueStartAndStopIntrons) {
 
-                if(spannedBy.entrySet().size() <= 1)  continue;
-                var copyOfSpannedByEntrySet = Set.copyOf(spannedBy.entrySet());
-                var hasSizeGreater2 = false;
-                for(var spannedByEntry : copyOfSpannedByEntrySet){
-                    var intronList = spannedByEntry.getValue();
-                    if(intronList.size() > 1){
-                        boolean hasStart = false, hasStop = false;
-                        var copyOfIntronList = List.copyOf(intronList);
-                        for(var intronToBeChecked : copyOfIntronList){
-                            if(intronToBeChecked.getStart() == intron.getStart()){
-                                hasStart = true;
-                            }
-
-                            if(intronToBeChecked.getStop() == intron.getStop()){
-                                hasStop = true;
-                            }
+            var spannedBy = new IntronByTranscriptMap();
+            intronsForGene.getIntervalsSpannedBy(intron.getStart(), intron.getStop(), spannedBy);
+            var wtProts = new ArrayList<String>();
+            var svProts = new ArrayList<String>();
+            if (spannedBy.entrySet().size() <= 1) continue;
+            var copyOfSpannedByEntrySet = Set.copyOf(spannedBy.entrySet());
+            var hasSizeGreater2 = false;
+            var hasSize1 = false;
+            for (var spannedByEntry : copyOfSpannedByEntrySet) {
+                var intronList = spannedByEntry.getValue();
+                var intronListSize = intronList.size();
+                if (intronListSize > 1) {
+                    boolean hasStart = false, hasStop = false;
+                    var copyOfIntronList = List.copyOf(intronList);
+                    for (var intronToBeChecked : copyOfIntronList) {
+                        if (intronToBeChecked.getStart() == intron.getStart()) {
+                            hasStart = true;
                         }
 
-                        if(!hasStart || !hasStop){
-                            spannedBy.entrySet().remove(spannedByEntry);
-                            continue;
+                        if (intronToBeChecked.getStop() == intron.getStop()) {
+                            hasStop = true;
                         }
-
-                        hasSizeGreater2 = true;
                     }
-                }
 
-                // gibt einträge die mehr start und endpunkt als verschiedene introns haben
-                // und es gibt mehr als ein transkript
-                if(!hasSizeGreater2 || spannedBy.size() <= 1) continue;
-
-                int maxSkippedExon = 0, minSkippedExon = Integer.MAX_VALUE, maxSkippedBases = 0, minSkippedBases = Integer.MAX_VALUE;
-                Intron sv = null;
-                for(var intronWithSV : spannedBy.entrySet()) {
-                    var intronList = intronWithSV.getValue();
-                    if(sv == null && intronList.size() == 1)
-                        sv = intronList.getFirst();
-
-                    int skippedExons = intronList.size() - 1;
-
-                    if(skippedExons > 0 && skippedExons < minSkippedExon)
-                        minSkippedExon = skippedExons;
-
-                    if(skippedExons > maxSkippedExon)
-                        maxSkippedExon = skippedExons;
-
-                    Intron lastIntron = null;
-                    for(var currentIntron : intronList){
-                        if(lastIntron == null){
-                            lastIntron = currentIntron;
-                            continue;
-                        }
-
-                        var start = lastIntron.getStop();
-                        var stop = currentIntron.getStart();
-
-                        var skippedBases = stop - start;
-
-                        if(skippedBases < minSkippedBases)
-                            minSkippedBases = skippedBases;
-
-                        if(skippedBases > maxSkippedBases)
-                            maxSkippedBases = skippedBases;
+                    if (!hasStart || !hasStop) {
+                        spannedBy.entrySet().remove(spannedByEntry);
+                        continue;
                     }
+
+                    hasSizeGreater2 = true;
+
+                } else if(intronList.size() == 1){
+                    hasSize1 = true;
                 }
-
-                if(sv == null) continue;
-
-                esSe.add(new EsSe(sv, minSkippedExon, maxSkippedExon, minSkippedBases, maxSkippedBases));
             }
-        //}
+
+            // gibt einträge die mehr start und endpunkt als verschiedene introns haben
+            // und es gibt mehr als ein transkript
+            if (!hasSizeGreater2 || !hasSize1 || spannedBy.size() <= 1) continue;
+
+            int maxSkippedExon = 0, minSkippedExon = Integer.MAX_VALUE, maxSkippedBases = 0, minSkippedBases = Integer.MAX_VALUE;
+            Intron sv = null;
+            var wildtypes = new TreeSet<Intron>();
+            for (var intronWithSV : spannedBy.entrySet()) {
+                var intronList = intronWithSV.getValue();
+                if (sv == null && intronList.size() == 1)
+                    sv = intronList.getFirst();
+
+                int skippedExons = intronList.size() - 1;
+
+                if (skippedExons > 0 && skippedExons < minSkippedExon)
+                    minSkippedExon = skippedExons;
+
+                if (skippedExons > maxSkippedExon)
+                    maxSkippedExon = skippedExons;
+
+                Intron lastIntron = null;
+                if(intronList.size() > 1){
+                    wildtypes.addAll(intronList);
+                }
+
+                for (var currentIntron : intronList) {
+                    if (lastIntron == null) {
+                        lastIntron = currentIntron;
+
+                        if(intronList.size() > 1){
+                            wtProts.add(currentIntron.getProteinId());
+                        } else{
+                            svProts.add((currentIntron.getProteinId()));
+                        }
+
+                        continue;
+                    }
+
+                    var start = lastIntron.getStop();
+                    var stop = currentIntron.getStart();
+
+                    var skippedBases = stop - start;
+
+                    if (skippedBases < minSkippedBases)
+                        minSkippedBases = skippedBases;
+
+                    if (skippedBases > maxSkippedBases)
+                        maxSkippedBases = skippedBases;
+                }
+            }
+
+            if (sv == null) continue;
+
+            esSe.add(new EsSe(sv, wildtypes, wtProts, svProts, minSkippedExon, maxSkippedExon, minSkippedBases, maxSkippedBases, nProts, nTrans));
+        }
+
     }
 }
