@@ -58,7 +58,7 @@ public class ExonSkipping {
                 nTrans = transcriptArray[Constants.EXON_INDEX].size();
             }
             // compare
-            if(geneId.equals("ENSG00000117676")){
+            if(geneId.equals("ENSG00000073464")){
                 var a = "";
             }
             calculateEsSe(esSe, allIntronsForGene, intronsWithUniqueStartAndStop, nProts , nTrans);
@@ -95,9 +95,6 @@ public class ExonSkipping {
     private static void calculateEsSe(Set<EsSe> esSe, IntervalTree<Intron> intronsForGene, Set<Intron> setWithUniqueStartAndStopIntrons, int nProts, int nTrans) {
 
         for (var intron : setWithUniqueStartAndStopIntrons) {
-            if(intron.getStart() == 69_577_316 && intron.getStop() == 69_581_621){
-                 var a = "";
-            }
             var spannedBy = new IntronByTranscriptMap();
             intronsForGene.getIntervalsSpannedBy(intron.getStart(), intron.getStop(), spannedBy);
             var wtProts = new ArrayList<String>();
@@ -106,6 +103,7 @@ public class ExonSkipping {
             var copyOfSpannedByEntrySet = Set.copyOf(spannedBy.entrySet());
             var hasSizeGreater2 = false;
             var hasSize1 = false;
+            Intron sv = null;
             for (var spannedByEntry : copyOfSpannedByEntrySet) {
                 var intronList = spannedByEntry.getValue();
                 var intronListSize = intronList.size();
@@ -137,6 +135,7 @@ public class ExonSkipping {
                         continue;
                     }
                     hasSize1 = true;
+                    sv = onlyIntron;
                 }
             }
 
@@ -144,13 +143,12 @@ public class ExonSkipping {
             // und es gibt mehr als ein transkript
             if (!hasSizeGreater2 || !hasSize1 || spannedBy.size() <= 1) continue;
 
+            var svLength = sv.getStop() - sv.getStart();
+
             int maxSkippedExon = 0, minSkippedExon = Integer.MAX_VALUE, maxSkippedBases = 0, minSkippedBases = Integer.MAX_VALUE;
-            Intron sv = null;
             var wildtypes = new TreeSet<Intron>();
             for (var intronWithSV : spannedBy.entrySet()) {
                 var intronList = intronWithSV.getValue();
-                if (sv == null && intronList.size() == 1)
-                    sv = intronList.getFirst();
 
                 int skippedExons = intronList.size() - 1;
 
@@ -160,38 +158,39 @@ public class ExonSkipping {
                 if (skippedExons > maxSkippedExon)
                     maxSkippedExon = skippedExons;
 
-                Intron lastIntron = null;
                 if(intronList.size() > 1){
                     wildtypes.addAll(intronList);
                 }
 
+                var isFirstIntron = true;
+                var intronsLength = 0;
                 for (var currentIntron : intronList) {
-                    if (lastIntron == null) {
-                        lastIntron = currentIntron;
-
+                    if (isFirstIntron) {
                         if(intronList.size() > 1){
                             wtProts.add(currentIntron.getProteinId());
                         } else{
                             svProts.add((currentIntron.getProteinId()));
                         }
-
-                        continue;
+                        isFirstIntron = false;
                     }
 
-                    var start = lastIntron.getStop();
-                    var stop = currentIntron.getStart();
+                    if(intronList.size() > 1){
+                        intronsLength += currentIntron.getStop() - currentIntron.getStart();
+                    }
+                }
 
-                    var skippedBases = stop - start;
+                if(intronsLength == 0) continue;
 
-                    if (skippedBases < minSkippedBases)
-                        minSkippedBases = skippedBases;
+                var skippedBases = svLength - intronsLength;
 
-                    if (skippedBases > maxSkippedBases)
-                        maxSkippedBases = skippedBases;
+                if(maxSkippedBases < skippedBases){
+                    maxSkippedBases = skippedBases;
+                }
+
+                if(minSkippedBases > skippedBases){
+                    minSkippedBases = skippedBases;
                 }
             }
-
-            if (sv == null) continue;
 
             esSe.add(new EsSe(sv, wildtypes, wtProts, svProts, minSkippedExon, maxSkippedExon, minSkippedBases, maxSkippedBases, nProts, nTrans));
         }
