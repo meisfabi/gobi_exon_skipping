@@ -5,7 +5,6 @@ import Model.Intron;
 import augmentedTree.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
@@ -17,7 +16,7 @@ public class ExonSkipping {
 
     public static void compute(Map<String, Map<String, TreeMap<Integer, GtfRecord>>[]> data, String outputPath) {
         logger.info("Starting to compute WTs and SVs");
-        var executorService = Executors.newFixedThreadPool(1);
+        var executorService = Executors.newFixedThreadPool(7);
         var esSe = new HashSet<EsSe>();
         for (var geneEntry : data.entrySet()) {
             var geneId = geneEntry.getKey();
@@ -58,9 +57,6 @@ public class ExonSkipping {
                 nTrans = transcriptArray[Constants.EXON_INDEX].size();
             }
             // compare
-            if(geneId.equals("ENSG00000073464")){
-                var a = "";
-            }
             calculateEsSe(esSe, allIntronsForGene, intronsWithUniqueStartAndStop, nProts , nTrans);
         }
         ExecutorServiceExtensions.shutdownExecutorService(executorService);
@@ -86,7 +82,6 @@ public class ExonSkipping {
             synchronized (intronByTranscriptMap.get(transcriptId)) {
                 intronByTranscriptMap.get(transcriptId).addAll(introns);
             }
-
             lastCds = cds;
         }
         return introns;
@@ -165,11 +160,12 @@ public class ExonSkipping {
                 var isFirstIntron = true;
                 var intronsLength = 0;
                 for (var currentIntron : intronList) {
-                    if (isFirstIntron) {
+                    var proteinId = currentIntron.getProteinId();
+                    if (proteinId != null && isFirstIntron) {
                         if(intronList.size() > 1){
-                            wtProts.add(currentIntron.getProteinId());
+                            wtProts.add(proteinId);
                         } else{
-                            svProts.add((currentIntron.getProteinId()));
+                            svProts.add((proteinId));
                         }
                         isFirstIntron = false;
                     }
