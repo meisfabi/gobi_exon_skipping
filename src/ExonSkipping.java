@@ -16,7 +16,7 @@ public class ExonSkipping {
     public static void compute(Genes data, String outputPath) {
         logger.info("Starting to compute WTs and SVs");
         var executorService = Executors.newFixedThreadPool(7);
-        var esSe = new HashSet<EsSe>();
+        var esSe = Collections.synchronizedSet(new HashSet<EsSe>());
         var startTime = System.currentTimeMillis();
         for (var geneEntry : data.getFeaturesByTranscriptByGene().entrySet()) {
             var geneId = geneEntry.getKey();
@@ -56,8 +56,10 @@ public class ExonSkipping {
                 nTrans = transcriptArray[Constants.EXON_INDEX].size();
             }
             // compare
+            final var finalNProts = nProts;
+            final var finalNTrans = nTrans;
             var gene = data.getFeaturesByTranscriptByGene().get(geneId);
-            calculateEsSe(esSe, allIntronsForGene, intronsWithUniqueStartAndStop, gene, nProts, nTrans);
+            executorService.submit(() -> calculateEsSe(esSe, allIntronsForGene, intronsWithUniqueStartAndStop, gene, finalNProts, finalNTrans));
         }
         logger.info(String.format("Time to calculate Introns and Calculate ES-SE: %s seconds", (System.currentTimeMillis() - startTime) / 1000.0));
         ExecutorServiceExtensions.shutdownExecutorService(executorService);
@@ -80,17 +82,19 @@ public class ExonSkipping {
 
             var currentIntron = new Intron(transcriptId, cds.getProteinId(), gene.getGeneName(), cds.getStrand(), gene.getSeqName(), lastCds.getStop() + 1, cds.getStart());
             introns.add(currentIntron);
-            intronByTranscriptMap.putIfAbsent(transcriptId, new ArrayList<>());
-            synchronized (intronByTranscriptMap.get(transcriptId)) {
-                intronByTranscriptMap.get(transcriptId).addAll(introns);
-            }
             lastCds = cds;
         }
+
+        intronByTranscriptMap.putIfAbsent(transcriptId, Collections.synchronizedList(new ArrayList<>()));
+        synchronized (intronByTranscriptMap.get(transcriptId)) {
+            intronByTranscriptMap.get(transcriptId).addAll(introns);
+        }
+
         return introns;
     }
 
     private static void calculateEsSe(Set<EsSe> esSe, IntervalTree<Intron> intronsForGene, Set<Intron> setWithUniqueStartAndStopIntrons, Gene gene, int nProts, int nTrans) {
-
+        var localEsSe = new HashSet<EsSe>();
         for (var intron : setWithUniqueStartAndStopIntrons) {
             var spannedBy = new IntronByTranscriptMap();
             intronsForGene.getIntervalsSpannedBy(intron.getStart(), intron.getStop(), spannedBy);
@@ -188,8 +192,11 @@ public class ExonSkipping {
                 }
             }
 
-            esSe.add(new EsSe(sv, wildtypes, wtProts, svProts, gene.getGeneId(), minSkippedExon, maxSkippedExon, minSkippedBases, maxSkippedBases, nProts, nTrans));
+            localEsSe.add(new EsSe(sv, wildtypes, wtProts, svProts, gene.getGeneId(), minSkippedExon, maxSkippedExon, minSkippedBases, maxSkippedBases, nProts, nTrans));
         }
+
+
+        esSe.addAll(localEsSe);
 
     }
 }

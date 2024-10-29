@@ -38,39 +38,29 @@ public class GtfParser {
     }
 
     private static void processLine(String line) {
-        final var stringBuilder = new StringBuilder();
         var splitLine = new String[9];
         var currentIdx = 0;
         var currentStart = 0;
+
         for (int i = 0; i < line.length(); i++) {
             var currentChar = line.charAt(i);
             if (currentChar == '\t') {
-                splitLine[currentIdx++] = stringBuilder.toString();
-                stringBuilder.setLength(0);
-                if (currentIdx == 3) {
-                    currentStart = i + 1;
+                splitLine[currentIdx++] = line.substring(currentStart, i);
+
+                currentStart = i + 1;
+                if (currentIdx == 3 && !splitLine[2].equals("exon") && !splitLine[2].equals("CDS")) {
+                    return;
+                }
+
+                if (currentIdx == 9) {
                     break;
                 }
-            } else {
-                stringBuilder.append(currentChar);
             }
         }
 
-        if (!splitLine[2].equals("exon") && !splitLine[2].equals("CDS"))
-            return;
-
-        for (int i = currentStart; i < line.length(); i++) {
-            var currentChar = line.charAt(i);
-            if (currentChar == '\t') {
-                splitLine[currentIdx++] = stringBuilder.toString();
-                stringBuilder.setLength(0);
-            } else {
-                stringBuilder.append(currentChar);
-            }
+        if (currentIdx < 9) {
+            splitLine[currentIdx] = line.substring(currentStart);
         }
-
-        splitLine[currentIdx] = stringBuilder.toString();
-        stringBuilder.setLength(0);
 
         var featureRecord = new FeatureRecord();
         try {
@@ -90,7 +80,7 @@ public class GtfParser {
             } else {
                 featureRecord.setFrame(-1);
             }
-
+            final var stringBuilder = new StringBuilder();
             var gene = new Gene();
             var transcript = new Transcript();
             var attributes = new ArrayList<String>();
