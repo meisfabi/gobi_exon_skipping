@@ -2,10 +2,9 @@ package Model;
 
 import augmentedTree.Interval;
 
-public class FeatureRecord {
+public class FeatureRecord implements Cloneable{
 
         // Fields
-        private String feature;
         private String proteinId;
         private String tag;
         private String ccdsId;
@@ -16,16 +15,21 @@ public class FeatureRecord {
         private int frame;
         private String exonNumber;
 
+        public FeatureRecord(){
 
-        // 3. feature
-        public String getFeature() {
-            return feature;
         }
 
-        public void setFeature(String feature) {
-            this.feature = feature;
+        public FeatureRecord(FeatureRecord featureRecord){
+            this.proteinId = featureRecord.proteinId;
+            this.tag = featureRecord.tag;
+            this.ccdsId = featureRecord.ccdsId;
+            this.start = featureRecord.start;
+            this.stop = featureRecord.stop;
+            this.score = featureRecord.score;
+            this.strand = featureRecord.strand;
+            this.frame = featureRecord.frame;
+            this.exonNumber = featureRecord.exonNumber;
         }
-
         // 4. start
         public int getStart() {
             return start;
@@ -113,8 +117,26 @@ public class FeatureRecord {
             this.tag = tag;
         }
 
-        // 17. transcript_name
+        public void clear(){
+            proteinId = null;
+            tag = null;
+            ccdsId = null;
+            start = 0;
+            stop = 0;
+            score = 0.0;
+            strand = '\u0000';
+            frame = 0;
+            exonNumber = null;
+        }
 
+    @Override
+    public FeatureRecord clone() {
+        try {
+            return (FeatureRecord) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
     }
+}
 
 

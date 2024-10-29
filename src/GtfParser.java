@@ -7,14 +7,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Stream;
 
 public class GtfParser {
     private static final Logger logger = LoggerFactory.getLogger(GtfParser.class);
+
     private static int errorLines;
 
-    // Map<Gene_Id, Map<Transcript_Id, TreeMap<StartPosition, GtfRecord>>[cds or exon]>
+    // Map<Gene_Id, Map<Transcript_Id, TreeMap<StartPosition, FeatureRecord>>[cds or exon]>
     private static Genes parsedGTF;
 
     public static Genes parse(String inputPath) {
@@ -38,110 +38,125 @@ public class GtfParser {
     }
 
     private static void processLine(String line) {
-        var splitLine = new ArrayList<String>();
-
-        var splitLineBuilder = new StringBuilder();
+        final var stringBuilder = new StringBuilder();
+        var splitLine = new String[9];
+        var currentIdx = 0;
+        var currentStart = 0;
         for (int i = 0; i < line.length(); i++) {
             var currentChar = line.charAt(i);
             if (currentChar == '\t') {
-                splitLine.add(splitLineBuilder.toString());
-                splitLineBuilder = new StringBuilder();
+                splitLine[currentIdx++] = stringBuilder.toString();
+                stringBuilder.setLength(0);
+                if (currentIdx == 3) {
+                    currentStart = i + 1;
+                    break;
+                }
             } else {
-                splitLineBuilder.append(currentChar);
+                stringBuilder.append(currentChar);
             }
         }
 
-        splitLine.add(splitLineBuilder.toString());
-
-        if (!splitLine.get(2).equals("exon") && !splitLine.get(2).equals("CDS"))
+        if (!splitLine[2].equals("exon") && !splitLine[2].equals("CDS"))
             return;
+
+        for (int i = currentStart; i < line.length(); i++) {
+            var currentChar = line.charAt(i);
+            if (currentChar == '\t') {
+                splitLine[currentIdx++] = stringBuilder.toString();
+                stringBuilder.setLength(0);
+            } else {
+                stringBuilder.append(currentChar);
+            }
+        }
+
+        splitLine[currentIdx] = stringBuilder.toString();
+        stringBuilder.setLength(0);
 
         var featureRecord = new FeatureRecord();
         try {
-            featureRecord.setStart(Integer.parseInt(splitLine.get(3)));
-            featureRecord.setStop(Integer.parseInt(splitLine.get(4)));
+            featureRecord.setStart(Integer.parseInt(splitLine[3]));
+            featureRecord.setStop(Integer.parseInt(splitLine[4]));
 
-            if (!splitLine.get(5).equals(".")) {
-                featureRecord.setScore(Double.parseDouble(splitLine.get(5)));
+            if (!splitLine[5].equals(".")) {
+                featureRecord.setScore(Double.parseDouble(splitLine[5]));
             } else {
                 featureRecord.setScore(-1.0);
             }
 
-            featureRecord.setStrand(splitLine.get(6).charAt(0));
+            featureRecord.setStrand(splitLine[6].charAt(0));
 
-            if (!splitLine.get(7).equals(".")) {
-                featureRecord.setFrame(Integer.parseInt(splitLine.get(7)));
+            if (!splitLine[7].equals(".")) {
+                featureRecord.setFrame(Integer.parseInt(splitLine[7]));
             } else {
                 featureRecord.setFrame(-1);
             }
 
             var gene = new Gene();
             var transcript = new Transcript();
-            StringBuilder attributeBuilder = new StringBuilder();
             var attributes = new ArrayList<String>();
-            for (int i = 0; i < splitLine.get(8).length(); i++) {
-                var currentChar = splitLine.get(8).charAt(i);
+            for (int i = 0; i < splitLine[8].length(); i++) {
+                var currentChar = splitLine[8].charAt(i);
                 if (currentChar == ';') {
-                    attributes.add(attributeBuilder.toString());
-                    attributeBuilder = new StringBuilder();
+                    attributes.add(stringBuilder.toString());
+                    stringBuilder.setLength(0);
                 } else {
-                    attributeBuilder.append(currentChar);
+                    stringBuilder.append(currentChar);
                 }
             }
-
+            stringBuilder.setLength(0);
 
             String key = null;
 
             for (var attribute : attributes) {
-                attributeBuilder = new StringBuilder();
+                stringBuilder.setLength(0);
                 for (int i = 0; i < attribute.length(); i++) {
                     var currentChar = attribute.charAt(i);
 
                     if (currentChar == '\"') continue;
                     if (currentChar == ' ') {
-                        key = attributeBuilder.toString();
-                        attributeBuilder = new StringBuilder();
+                        key = stringBuilder.toString();
+                        stringBuilder.setLength(0);
                     } else {
-                        attributeBuilder.append(currentChar);
+                        stringBuilder.append(currentChar);
                     }
                 }
 
-                var value = attributeBuilder.toString();
+                var value = stringBuilder.toString();
 
                 if (key == null || key.isBlank()) continue;
 
                 switch (key) {
-                    case "gene_id":
+                    case Constants.GENE_ID:
                         gene.setGeneId(value);
                         break;
-                    case "transcript_id":
+                    case Constants.TRANSCRIPT_ID:
                         transcript.setTranscriptId(value);
                         break;
-                    case "exon_number":
+                    case Constants.EXON_NUMBER:
                         featureRecord.setExonNumber(value);
                         break;
-                    case "gene_source":
+                    case Constants.GENE_SOURCE:
                         gene.setGeneSource(value);
                         break;
-                    case "gene_biotype":
+                    case Constants.GENE_BIOTYPE:
                         gene.setGeneBiotype(value);
                         break;
-                    case "transcript_name":
+                    case Constants.TRANSCRIPT_NAME:
                         transcript.setTranscriptName(value);
                         break;
-                    case "transcript_source":
+                    case Constants.TRANSCRIPT_SOURCE:
                         transcript.setTranscriptSource(value);
                         break;
-                    case "tag":
+                    case Constants.TAG:
                         featureRecord.setTag(value);
                         break;
-                    case "ccds_id":
+                    case Constants.CCDS_ID:
                         featureRecord.setCcdsId(value);
                         break;
-                    case "protein_id":
+                    case Constants.PROTEIN_ID:
                         featureRecord.setProteinId(value);
                         break;
-                    case "gene_name":
+                    case Constants.GENE_NAME:
                         gene.setGeneName(value);
                         break;
                 }
@@ -149,9 +164,8 @@ public class GtfParser {
             var geneId = gene.getGeneId();
             Gene currentGene;
 
-            synchronized (parsedGTF.getFeaturesByTranscriptByGene()) {
-                currentGene = parsedGTF.getFeaturesByTranscriptByGene().get(geneId);
-            }
+
+            currentGene = parsedGTF.getFeaturesByTranscriptByGene().get(geneId);
 
             if (currentGene == null) {
                 currentGene = new Gene();
@@ -159,14 +173,13 @@ public class GtfParser {
                 currentGene.setGeneName(gene.getGeneName());
                 currentGene.setGeneId(geneId);
                 currentGene.setGeneSource(gene.getGeneSource());
-                currentGene.setSeqName(splitLine.getFirst());
-                synchronized (parsedGTF.getFeaturesByTranscriptByGene()) {
-                    parsedGTF.getFeaturesByTranscriptByGene().put(geneId, currentGene);
-                }
+                currentGene.setSeqName(splitLine[0]);
+                parsedGTF.getFeaturesByTranscriptByGene().put(geneId, currentGene);
+
             }
 
             int index = Constants.CDS_INDEX;
-            if (splitLine.get(2).equals("exon")) {
+            if (splitLine[2].equals("exon")) {
                 index = Constants.EXON_INDEX;
             }
             var transcriptId = transcript.getTranscriptId();
@@ -179,7 +192,7 @@ public class GtfParser {
             if (transcriptMap[index] == null) {
                 transcriptMap[index] = new HashMap<>();
             }
-            transcriptMap[index].putIfAbsent(transcriptId, new Transcript());
+            transcriptMap[index].putIfAbsent(transcriptId, transcript);
             transcriptMap[index].get(transcript.getTranscriptId()).getTranscriptEntry().addRecord(featureRecord.getStart(), featureRecord);
 
         } catch (Exception e) {
