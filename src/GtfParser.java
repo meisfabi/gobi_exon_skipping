@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -15,7 +16,8 @@ public class GtfParser {
 
     // Map<Gene_Id, Map<Transcript_Id, TreeMap<StartPosition, GtfRecord>>[cds or exon]>
     private static Genes parsedGTF;
-    public static Genes parse(String inputPath){
+
+    public static Genes parse(String inputPath) {
         errorLines = 0;
         logger.info("Starting to parse gtf file");
         parsedGTF = new Genes();
@@ -30,62 +32,85 @@ public class GtfParser {
         }
 
         logger.info("GTF-File parsed");
-        if(errorLines > 0)
+        if (errorLines > 0)
             logger.warn(String.format("%s could not be saved due to an error while parsing", errorLines));
         return parsedGTF;
     }
 
-    // TODO remove split and do it manually
-    private static void processLine(String line){
-        var splitLine = line.split("\t");
+    private static void processLine(String line) {
+        var splitLine = new ArrayList<String>();
 
-        if(!splitLine[2].equals("exon") && !splitLine[2].equals("CDS"))
+        var splitLineBuilder = new StringBuilder();
+        for (int i = 0; i < line.length(); i++) {
+            var currentChar = line.charAt(i);
+            if (currentChar == '\t') {
+                splitLine.add(splitLineBuilder.toString());
+                splitLineBuilder = new StringBuilder();
+            } else {
+                splitLineBuilder.append(currentChar);
+            }
+        }
+
+        splitLine.add(splitLineBuilder.toString());
+
+        if (!splitLine.get(2).equals("exon") && !splitLine.get(2).equals("CDS"))
             return;
 
         var featureRecord = new FeatureRecord();
-        try{
-            featureRecord.setFeature(splitLine[2]);
-            featureRecord.setStart(Integer.parseInt(splitLine[3]));
-            featureRecord.setStop(Integer.parseInt(splitLine[4]));
+        try {
+            featureRecord.setStart(Integer.parseInt(splitLine.get(3)));
+            featureRecord.setStop(Integer.parseInt(splitLine.get(4)));
 
-            if(!splitLine[5].equals(".")){
-                featureRecord.setScore(Double.parseDouble(splitLine[5]));
-            } else{
+            if (!splitLine.get(5).equals(".")) {
+                featureRecord.setScore(Double.parseDouble(splitLine.get(5)));
+            } else {
                 featureRecord.setScore(-1.0);
             }
 
-            featureRecord.setStrand(splitLine[6].charAt(0));
+            featureRecord.setStrand(splitLine.get(6).charAt(0));
 
-            if(!splitLine[7].equals(".")){
-                featureRecord.setFrame(Integer.parseInt(splitLine[7]));
-            } else{
+            if (!splitLine.get(7).equals(".")) {
+                featureRecord.setFrame(Integer.parseInt(splitLine.get(7)));
+            } else {
                 featureRecord.setFrame(-1);
             }
 
             var gene = new Gene();
             var transcript = new Transcript();
-            var attributes = splitLine[8].split(";");
+            StringBuilder attributeBuilder = new StringBuilder();
+            var attributes = new ArrayList<String>();
+            for (int i = 0; i < splitLine.get(8).length(); i++) {
+                var currentChar = splitLine.get(8).charAt(i);
+                if (currentChar == ';') {
+                    attributes.add(attributeBuilder.toString());
+                    attributeBuilder = new StringBuilder();
+                } else {
+                    attributeBuilder.append(currentChar);
+                }
+            }
+
+
             String key = null;
-            StringBuilder attributeBuilder;
-            for(var attribute : attributes){
+
+            for (var attribute : attributes) {
                 attributeBuilder = new StringBuilder();
-                for(int i = 0; i < attribute.length(); i++){
+                for (int i = 0; i < attribute.length(); i++) {
                     var currentChar = attribute.charAt(i);
 
-                    if(currentChar == '\"') continue;
-                    if(currentChar == ' '){
+                    if (currentChar == '\"') continue;
+                    if (currentChar == ' ') {
                         key = attributeBuilder.toString();
                         attributeBuilder = new StringBuilder();
-                    } else{
+                    } else {
                         attributeBuilder.append(currentChar);
                     }
                 }
 
                 var value = attributeBuilder.toString();
 
-                if(key == null || key.isBlank()) continue;
+                if (key == null || key.isBlank()) continue;
 
-                switch (key){
+                switch (key) {
                     case "gene_id":
                         gene.setGeneId(value);
                         break;
@@ -126,24 +151,26 @@ public class GtfParser {
 
             synchronized (parsedGTF.getFeaturesByTranscriptByGene()) {
                 currentGene = parsedGTF.getFeaturesByTranscriptByGene().get(geneId);
-                if (currentGene == null) {
-                    currentGene = new Gene();
-                    currentGene.setGeneBiotype(gene.getGeneBiotype());
-                    currentGene.setGeneName(gene.getGeneName());
-                    currentGene.setGeneId(geneId);
-                    currentGene.setGeneSource(gene.getGeneSource());
-                    currentGene.setSeqName(splitLine[0]);
+            }
+
+            if (currentGene == null) {
+                currentGene = new Gene();
+                currentGene.setGeneBiotype(gene.getGeneBiotype());
+                currentGene.setGeneName(gene.getGeneName());
+                currentGene.setGeneId(geneId);
+                currentGene.setGeneSource(gene.getGeneSource());
+                currentGene.setSeqName(splitLine.getFirst());
+                synchronized (parsedGTF.getFeaturesByTranscriptByGene()) {
                     parsedGTF.getFeaturesByTranscriptByGene().put(geneId, currentGene);
                 }
             }
 
-
             int index = Constants.CDS_INDEX;
-            if(featureRecord.getFeature().equals("exon")){
+            if (splitLine.get(2).equals("exon")) {
                 index = Constants.EXON_INDEX;
             }
             var transcriptId = transcript.getTranscriptId();
-            if(geneId.isEmpty() || transcriptId.isEmpty()){
+            if (geneId.isEmpty() || transcriptId.isEmpty()) {
                 logger.warn("Could not add GtfRecord because geneId or transcriptId was empty");
                 return;
             }
@@ -155,7 +182,7 @@ public class GtfParser {
             transcriptMap[index].putIfAbsent(transcriptId, new Transcript());
             transcriptMap[index].get(transcript.getTranscriptId()).getTranscriptEntry().addRecord(featureRecord.getStart(), featureRecord);
 
-        } catch (Exception e){
+        } catch (Exception e) {
             logger.error("Error while trying to parse line", e);
             errorLines++;
         }
