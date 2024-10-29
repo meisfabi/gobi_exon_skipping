@@ -4,9 +4,10 @@ import com.sun.source.tree.Tree;
 
 import java.util.*;
 
-public class EsSe extends Intron  {
+public class EsSe extends Intron {
+    private String geneId;
     private Set<Intron> wildtypes = new TreeSet<>();
-    private List<String> wildtypeProteins= new ArrayList<>();
+    private List<String> wildtypeProteins = new ArrayList<>();
     private List<String> splicingVariantProteins = new ArrayList<>();
     private int minSkippedExon;
     private int maxSkippedExon;
@@ -15,8 +16,9 @@ public class EsSe extends Intron  {
     private int nProts;
     private int nTrans;
 
-    public EsSe(Intron intron, TreeSet<Intron> wildtypes, List<String> wildtypeProteins, List<String> splicingVariantProteins, int minSkippedExon, int maxSkippedExon, int minSkippedBases, int maxSkippedBases, int nProts, int nTrans) {
-        super(intron.geneId, intron.transcriptId, intron.proteinId, intron.symbol, intron.strand, intron.chromosome, intron.start, intron.stop);
+    public EsSe(Intron intron, TreeSet<Intron> wildtypes, List<String> wildtypeProteins, List<String> splicingVariantProteins, String geneId, int minSkippedExon, int maxSkippedExon, int minSkippedBases, int maxSkippedBases, int nProts, int nTrans) {
+        super(intron.transcriptId, intron.proteinId, intron.symbol, intron.strand, intron.chromosome, intron.start, intron.stop);
+        this.geneId = geneId;
         this.minSkippedBases = minSkippedBases;
         this.maxSkippedBases = maxSkippedBases;
         this.minSkippedExon = minSkippedExon;
@@ -29,6 +31,9 @@ public class EsSe extends Intron  {
         this.splicingVariantProteins = List.copyOf(splicingVariantProteins);
     }
 
+    public String getGeneId() {
+        return geneId;
+    }
 
     public int getMinSkippedBases() {
         return minSkippedBases;
@@ -80,7 +85,7 @@ public class EsSe extends Intron  {
         EsSe esSe = (EsSe) o;
         // field comparison
         return start == esSe.start
-                && stop ==  esSe.stop
+                && stop == esSe.stop
                 && geneId.equals(esSe.geneId);
 
     }

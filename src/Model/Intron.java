@@ -7,7 +7,6 @@ import java.util.Objects;
 
 public class Intron implements Interval, Comparable<Intron> {
 
-    protected final String geneId;
     protected final String transcriptId;
     protected final String symbol;
     protected final String chromosome;
@@ -16,8 +15,7 @@ public class Intron implements Interval, Comparable<Intron> {
     protected final int stop;
     protected final String proteinId;
 
-    public Intron(String gene_id, String transcript_id, String proteinId, String symbol, char strand, String chromosome, int start, int stop){
-        this.geneId = gene_id;
+    public Intron(String transcript_id, String proteinId, String symbol, char strand, String chromosome, int start, int stop){
         this.transcriptId = transcript_id;
         this.proteinId = proteinId;
         this.symbol = symbol;
@@ -34,10 +32,6 @@ public class Intron implements Interval, Comparable<Intron> {
     @Override
     public int getStop() {
         return stop;
-    }
-
-    public String getGeneId() {
-        return geneId;
     }
 
     public String getTranscriptId() {

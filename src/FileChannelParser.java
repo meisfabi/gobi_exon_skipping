@@ -3,12 +3,7 @@ import Model.GtfRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
-import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
-import java.nio.charset.CoderResult;
-import java.nio.charset.CodingErrorAction;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
@@ -51,9 +46,7 @@ public class FileChannelParser {
 
                 for (int i = 0; i < lines.length - 1; i++) {
                     String line = lines[i].trim();
-                    if(line.contains("69577210")){
-                        var a = "";
-                    }
+
                     if (line.isEmpty() || line.startsWith("#")) {
                         continue;
                     }

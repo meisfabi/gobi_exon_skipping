@@ -3,7 +3,8 @@ import Model.Intron;
 import java.util.*;
 
 public class IntronByTranscriptMap implements Collection<Intron> {
-    private HashMap<String, TreeSet<Intron>> intronByTranscriptMap= new HashMap<>();
+    private final HashMap<String, TreeSet<Intron>> intronByTranscriptMap = new HashMap<>();
+
     @Override
     public int size() {
         return intronByTranscriptMap.size();
@@ -56,12 +57,12 @@ public class IntronByTranscriptMap implements Collection<Intron> {
     @Override
     public boolean addAll(Collection<? extends Intron> c) {
         String transcriptId = null;
-        for(var intron : c){
+        for (var intron : c) {
             transcriptId = intron.getTranscriptId();
-            if(transcriptId != null)
+            if (transcriptId != null)
                 break;
         }
-        if(transcriptId == null) return false;
+        if (transcriptId == null) return false;
         intronByTranscriptMap.putIfAbsent(transcriptId, new TreeSet<>(c));
         return true;
     }
@@ -81,11 +82,11 @@ public class IntronByTranscriptMap implements Collection<Intron> {
         intronByTranscriptMap.clear();
     }
 
-    public Set<Map.Entry<String, TreeSet<Intron>>> entrySet(){
+    public Set<Map.Entry<String, TreeSet<Intron>>> entrySet() {
         return intronByTranscriptMap.entrySet();
     }
 
-    public TreeSet<Intron> get(String key){
+    public TreeSet<Intron> get(String key) {
         return intronByTranscriptMap.get(key);
     }
 }

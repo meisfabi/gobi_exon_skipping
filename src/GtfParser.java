@@ -1,14 +1,12 @@
-import Extensions.ExecutorServiceExtensions;
-import Model.GtfRecord;
+import Model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.nio.channels.FileChannel;
+
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
-import java.util.*;
-import java.util.concurrent.Executors;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Stream;
 
 public class GtfParser {
@@ -16,11 +14,11 @@ public class GtfParser {
     private static int errorLines;
 
     // Map<Gene_Id, Map<Transcript_Id, TreeMap<StartPosition, GtfRecord>>[cds or exon]>
-    private static Map<String, Map<String, TreeMap<Integer, GtfRecord>>[]> parsedGTF;
-    public static Map<String, Map<String, TreeMap<Integer, GtfRecord>>[]> parse(String inputPath){
+    private static Genes parsedGTF;
+    public static Genes parse(String inputPath){
         errorLines = 0;
         logger.info("Starting to parse gtf file");
-        parsedGTF = Collections.synchronizedMap(new HashMap<>());
+        parsedGTF = new Genes();
         Path path = Path.of(inputPath);
 
         try (Stream<String> lines = Files.lines(path, StandardCharsets.UTF_8)) {
@@ -33,7 +31,7 @@ public class GtfParser {
 
         logger.info("GTF-File parsed");
         if(errorLines > 0)
-            logger.info(String.format("%s could not be saved due to an error while parsing", errorLines));
+            logger.warn(String.format("%s could not be saved due to an error while parsing", errorLines));
         return parsedGTF;
     }
 
@@ -44,96 +42,118 @@ public class GtfParser {
         if(!splitLine[2].equals("exon") && !splitLine[2].equals("CDS"))
             return;
 
-        var gtf = new GtfRecord();
+        var featureRecord = new FeatureRecord();
         try{
-            gtf.setSeqName(splitLine[0]);
-            gtf.setSource(splitLine[1]);
-            gtf.setFeature(splitLine[2]);
-            gtf.setStart(Integer.parseInt(splitLine[3]));
-            gtf.setStop(Integer.parseInt(splitLine[4]));
+            featureRecord.setFeature(splitLine[2]);
+            featureRecord.setStart(Integer.parseInt(splitLine[3]));
+            featureRecord.setStop(Integer.parseInt(splitLine[4]));
 
             if(!splitLine[5].equals(".")){
-                gtf.setScore(Double.parseDouble(splitLine[5]));
+                featureRecord.setScore(Double.parseDouble(splitLine[5]));
             } else{
-                gtf.setScore(-1.0);
+                featureRecord.setScore(-1.0);
             }
 
-            gtf.setStrand(splitLine[6].charAt(0));
+            featureRecord.setStrand(splitLine[6].charAt(0));
 
             if(!splitLine[7].equals(".")){
-                gtf.setFrame(Integer.parseInt(splitLine[7]));
+                featureRecord.setFrame(Integer.parseInt(splitLine[7]));
             } else{
-                gtf.setFrame(-1);
+                featureRecord.setFrame(-1);
             }
 
+            var gene = new Gene();
+            var transcript = new Transcript();
             var attributes = splitLine[8].split(";");
-            var geneId = "";
-            var transcriptId = "";
+            String key = null;
+            StringBuilder attributeBuilder;
             for(var attribute : attributes){
-                var splitAttribute = attribute.trim().split(" ");
-                if(splitAttribute.length != 2) continue;
-                var key = splitAttribute[0];
-                var value = splitAttribute[1].replace("\"", "");
+                attributeBuilder = new StringBuilder();
+                for(int i = 0; i < attribute.length(); i++){
+                    var currentChar = attribute.charAt(i);
+
+                    if(currentChar == '\"') continue;
+                    if(currentChar == ' '){
+                        key = attributeBuilder.toString();
+                        attributeBuilder = new StringBuilder();
+                    } else{
+                        attributeBuilder.append(currentChar);
+                    }
+                }
+
+                var value = attributeBuilder.toString();
+
+                if(key == null || key.isBlank()) continue;
 
                 switch (key){
                     case "gene_id":
-                        geneId = value;
-                        gtf.setGeneId(value);
+                        gene.setGeneId(value);
                         break;
                     case "transcript_id":
-                        transcriptId = value;
-                        if(value.equals("ENST00000357308") && gtf.getStart() == 69577210){
-                            var a = "";
-                        }
-                        gtf.setTranscriptId(value);
+                        transcript.setTranscriptId(value);
                         break;
                     case "exon_number":
-                        gtf.setExonNumber(value);
+                        featureRecord.setExonNumber(value);
                         break;
                     case "gene_source":
-                        gtf.setGeneSource(value);
+                        gene.setGeneSource(value);
                         break;
                     case "gene_biotype":
-                        gtf.setGeneBiotype(value);
+                        gene.setGeneBiotype(value);
                         break;
                     case "transcript_name":
-                        gtf.setTranscriptName(value);
+                        transcript.setTranscriptName(value);
                         break;
                     case "transcript_source":
-                        gtf.setTranscriptSource(value);
+                        transcript.setTranscriptSource(value);
                         break;
                     case "tag":
-                        gtf.setTag(value);
+                        featureRecord.setTag(value);
                         break;
                     case "ccds_id":
-                        gtf.setCcdsId(value);
+                        featureRecord.setCcdsId(value);
                         break;
                     case "protein_id":
-                        gtf.setProteinId(value);
+                        featureRecord.setProteinId(value);
                         break;
                     case "gene_name":
-                        gtf.setGeneName(value);
+                        gene.setGeneName(value);
                         break;
                 }
             }
+            var geneId = gene.getGeneId();
+            Gene currentGene;
 
-            parsedGTF.putIfAbsent(geneId, new HashMap[2]);
+            synchronized (parsedGTF.getFeaturesByTranscriptByGene()) {
+                currentGene = parsedGTF.getFeaturesByTranscriptByGene().get(geneId);
+                if (currentGene == null) {
+                    currentGene = new Gene();
+                    currentGene.setGeneBiotype(gene.getGeneBiotype());
+                    currentGene.setGeneName(gene.getGeneName());
+                    currentGene.setGeneId(geneId);
+                    currentGene.setGeneSource(gene.getGeneSource());
+                    currentGene.setSeqName(splitLine[0]);
+                    parsedGTF.getFeaturesByTranscriptByGene().put(geneId, currentGene);
+                }
+            }
+
+
             int index = Constants.CDS_INDEX;
-            if(gtf.getFeature().equals("exon")){
+            if(featureRecord.getFeature().equals("exon")){
                 index = Constants.EXON_INDEX;
             }
+            var transcriptId = transcript.getTranscriptId();
             if(geneId.isEmpty() || transcriptId.isEmpty()){
                 logger.warn("Could not add GtfRecord because geneId or transcriptId was empty");
                 return;
             }
 
-            synchronized (parsedGTF.get(geneId)) {
-                if (parsedGTF.get(geneId)[index] == null) {
-                    parsedGTF.get(geneId)[index] = new HashMap<>();
-                }
-                parsedGTF.get(geneId)[index].putIfAbsent(transcriptId, new TreeMap<>());
-                parsedGTF.get(geneId)[index].get(gtf.getTranscriptId()).put(gtf.getStart(), gtf);
+            var transcriptMap = currentGene.getTranscriptMapArray();
+            if (transcriptMap[index] == null) {
+                transcriptMap[index] = new HashMap<>();
             }
+            transcriptMap[index].putIfAbsent(transcriptId, new Transcript());
+            transcriptMap[index].get(transcript.getTranscriptId()).getTranscriptEntry().addRecord(featureRecord.getStart(), featureRecord);
 
         } catch (Exception e){
             logger.error("Error while trying to parse line", e);
