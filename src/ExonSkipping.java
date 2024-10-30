@@ -11,7 +11,6 @@ import java.util.concurrent.Future;
 
 public class ExonSkipping {
     private static final Logger logger = LoggerFactory.getLogger(ExonSkipping.class);
-    private static final Map<String, List<Intron>> intronByTranscriptMap = Collections.synchronizedMap(new HashMap<>());
 
     public static void compute(Genes data, String outputPath) {
         logger.info("Starting to compute WTs and SVs");
@@ -30,7 +29,7 @@ public class ExonSkipping {
             var getIntronFutures = new ArrayList<Future<ArrayList<Intron>>>();
             if (transcriptCdsMap == null || transcriptCdsMap.isEmpty()) continue;
             for (var transcriptEntry : transcriptCdsMap.entrySet()) {
-                var intronsForTranscriptFuture = executorService.submit(() -> getIntrons(transcriptEntry, geneEntry.getValue()));
+                var intronsForTranscriptFuture = executorService.submit(() -> getIntrons(transcriptEntry.getKey(), transcriptEntry.getValue(), geneEntry.getValue()));
                 getIntronFutures.add(intronsForTranscriptFuture);
             }
 
@@ -67,10 +66,7 @@ public class ExonSkipping {
         Writer.writeTsv(outputPath, esSe);
     }
 
-    private static ArrayList<Intron> getIntrons(Map.Entry<String, Transcript> transcriptEntry, Gene gene) {
-        var transcriptId = transcriptEntry.getKey();
-        var cdsMap = transcriptEntry.getValue();
-
+    private static ArrayList<Intron> getIntrons(String transcriptId, Transcript cdsMap, Gene gene) {
         FeatureRecord lastCds = null;
         var introns = new ArrayList<Intron>();
 
@@ -83,11 +79,6 @@ public class ExonSkipping {
             var currentIntron = new Intron(transcriptId, cds.getProteinId(), gene.getGeneName(), cds.getStrand(), gene.getSeqName(), lastCds.getStop() + 1, cds.getStart());
             introns.add(currentIntron);
             lastCds = cds;
-        }
-
-        intronByTranscriptMap.putIfAbsent(transcriptId, Collections.synchronizedList(new ArrayList<>()));
-        synchronized (intronByTranscriptMap.get(transcriptId)) {
-            intronByTranscriptMap.get(transcriptId).addAll(introns);
         }
 
         return introns;
@@ -114,6 +105,7 @@ public class ExonSkipping {
                     for (var intronToBeChecked : copyOfIntronList) {
                         if (intronToBeChecked.getStart() == intron.getStart()) {
                             hasStart = true;
+                            continue;
                         }
 
                         if (intronToBeChecked.getStop() == intron.getStop()) {
@@ -142,7 +134,7 @@ public class ExonSkipping {
 
             // gibt einträge die mehr start und endpunkt als verschiedene introns haben
             // und es gibt mehr als ein transkript
-            if (!hasSizeGreater2 || !hasSize1 || spannedBy.size() <= 1) continue;
+            if (!hasSizeGreater2 || !hasSize1) continue;
 
             var svLength = sv.getStop() - sv.getStart();
 
@@ -195,8 +187,6 @@ public class ExonSkipping {
             localEsSe.add(new EsSe(sv, wildtypes, wtProts, svProts, gene.getGeneId(), minSkippedExon, maxSkippedExon, minSkippedBases, maxSkippedBases, nProts, nTrans));
         }
 
-
         esSe.addAll(localEsSe);
-
     }
 }

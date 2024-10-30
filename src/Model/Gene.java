@@ -2,6 +2,7 @@ package Model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 public class Gene {
@@ -13,9 +14,9 @@ public class Gene {
 
     private Map<String, Transcript>[] transcriptMapArray;
 
-    public Map<String, Transcript>[] getTranscriptMapArray() {
+    public synchronized Map<String, Transcript>[] getTranscriptMapArray() {
         if(transcriptMapArray == null)
-            transcriptMapArray = new HashMap[2];
+            transcriptMapArray = new ConcurrentMap[2];
         return transcriptMapArray;
     }
     public String getGeneName() {

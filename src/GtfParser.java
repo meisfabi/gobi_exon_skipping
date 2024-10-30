@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Stream;
 
 public class GtfParser {
@@ -81,8 +82,6 @@ public class GtfParser {
                 featureRecord.setFrame(-1);
             }
             final var stringBuilder = new StringBuilder();
-            var gene = new Gene();
-            var transcript = new Transcript();
             var attributes = new ArrayList<String>();
             for (int i = 0; i < splitLine[8].length(); i++) {
                 var currentChar = splitLine[8].charAt(i);
@@ -96,6 +95,8 @@ public class GtfParser {
             stringBuilder.setLength(0);
 
             String key = null;
+            var gene = new Gene();
+            var transcript = new Transcript();
 
             for (var attribute : attributes) {
                 stringBuilder.setLength(0);
@@ -180,7 +181,7 @@ public class GtfParser {
 
             var transcriptMap = currentGene.getTranscriptMapArray();
             if (transcriptMap[index] == null) {
-                transcriptMap[index] = new HashMap<>();
+                transcriptMap[index] = new ConcurrentHashMap<>();
             }
             transcriptMap[index].putIfAbsent(transcriptId, transcript);
             transcriptMap[index].get(transcript.getTranscriptId()).getTranscriptEntry().addRecord(featureRecord.getStart(), featureRecord);
